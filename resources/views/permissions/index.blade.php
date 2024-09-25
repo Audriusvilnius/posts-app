@@ -1,58 +1,83 @@
 @extends('layouts.app')
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Permission</h2>
+    <div class="container">
+        <div class="justify-content-center">
+            <div class="row">
+                <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
+                    <h2>{{ __('Permission') }}</h2>
+                    @can('permission-create')
+                        <a class="btn btn-success btn-sm mb-2 px-4"href="{{ route('permissions.create') }}"><i
+                                class="fa fa-plus me-2"></i>
+                            {{ __('Create New Permission') }}</a>
+                    @endcan
+                </div>
             </div>
-            <div class="pull-right">
-                @can('permission-create')
-                    <a class="btn btn-success btn-sm mb-2" href="{{ route('permissions.create') }}"><i class="fa fa-plus"></i>
-                        Create
-                        New Permission</a>
-                @endcan
+        </div>
+
+        @session('success')
+            <div class="alert alert-success" role="alert">
+                {{ $value }}
+            </div>
+        @endsession
+
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm table-hover">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th cope="col">ID</th>
+                                <th cope="col">Details</th>
+                                <th width="180px" class=" align-content-center align-items-center">Action</th>
+                            </tr>
+                            @forelse ($data as $key => $permission)
+                                <tr>
+                                    <th scope="row">
+                                        <smll class="text-muted fst-italic">
+                                            {{ $key + 1 }}
+                                        </smll>
+                                    </th>
+                                    <td> <small class="text-muted fst-italic">{{ $permission->id }}</small></td>
+                                    <td>{{ $permission->name }}</td>
+
+                                    <td class="align-middle">
+                                        <div class="justify-content-center align-content-end d-flex gap-2">
+                                            {{-- <a class="btn btn-info btn-sm"
+                                            href="{{ route('permissions.show', $permission->id) }}"><i
+                                            class="fa-solid fa-list"></i> Show</a> --}}
+                                            @can('product-edit')
+                                                <a class="btn btn-primary btn-sm px-3"
+                                                    href="{{ route('permissions.edit', $permission->id) }}"><i
+                                                        class="fa-solid fa-pen-to-square me-2"></i> Edit</a>
+                                            @endcan
+
+                                            @can('permission-delete')
+                                                <div class="">
+                                                    <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#deletePermission{{ $permission->id }}"><i
+                                                            class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
+                                                    </a>
+                                                </div>
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                                @include('permissions.modal.delete')
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center align-middle">
+                                        <h3 class="p-3 fst-italic">
+                                            {{ __('No reservations found!') }}
+                                        </h3>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </table>
+                        {{ $data->appends($_GET)->links() }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    @session('success')
-        <div class="alert alert-success" role="alert">
-            {{ $value }}
-        </div>
-    @endsession
-
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($data as $key => $permission)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $permission->id }}</td>
-                <td>{{ $permission->name }}</td>
-                <td>
-                    <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <a class="btn btn-info btn-sm" href="{{ route('permissions.show', $permission->id) }}"><i
-                                class="fa-solid fa-list"></i> Show</a>
-                        @can('product-edit')
-                            <a class="btn btn-primary btn-sm" href="{{ route('permissions.edit', $permission->id) }}"><i
-                                    class="fa-solid fa-pen-to-square"></i> Edit</a>
-                        @endcan
-
-                        @can('permission-delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                    class="fa-solid fa-trash"></i>Delete</button>
-                        @endcan
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
-    {{ $data->appends($_GET)->links() }}
-
 @endsection
