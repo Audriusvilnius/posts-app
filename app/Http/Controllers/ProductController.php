@@ -53,8 +53,8 @@ class ProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'name' => 'required|string|max:255|min:3',
+            'detail' => 'required|string|max:3000|min:3',
             'booked_from' => 'required|date|after:today',
             'booked_to' => 'required|date|after:booked_from',
         ]);
@@ -84,6 +84,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
+
         return view('products.edit', compact('product'));
     }
 
@@ -97,8 +98,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): RedirectResponse
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'name' => 'required|string|max:255|min:3',
+            'detail' => 'required|string|max:3000|min:3',
+            'booked_from' => 'required|date|after:today',
+            'booked_to' => 'required|date|after:booked_from',
         ]);
 
         $product->update($request->all());
