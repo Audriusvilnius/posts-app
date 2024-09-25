@@ -16,6 +16,8 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
-        'detail'
+        'detail',
+        'booked_from',
+        'booked_to'
     ];
 }

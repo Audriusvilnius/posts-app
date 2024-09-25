@@ -55,6 +55,8 @@ class ProductController extends Controller
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'booked_from' => 'required|date|after:today',
+            'booked_to' => 'required|date|after:booked_from',
         ]);
 
         Product::create($request->all());

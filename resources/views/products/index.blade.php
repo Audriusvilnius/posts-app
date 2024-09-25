@@ -1,60 +1,88 @@
 @extends('layouts.app')
-
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Products</h2>
-            </div>
-            <div class="pull-right">
-                @can('product-create')
-                    <a class="btn btn-success btn-sm mb-2" href="{{ route('products.create') }}"><i class="fa fa-plus"></i> Create
-                        New Product</a>
-                @endcan
-            </div>
-        </div>
-    </div>
-
     @session('success')
         <div class="alert alert-success" role="alert">
             {{ $value }}
         </div>
     @endsession
+    <div class="container">
+        <div class="justify-content-center">
+            <div class="row">
+                <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
+                    <h2>{{ __('Reservations') }}</h2>
+                    @can('product-create')
+                        <a class="btn btn-success btn-sm mb-2 px-4" href="{{ route('products.create') }}"><i
+                                class="fa fa-plus me-2"></i>
+                            {{ __('Create New Reservation') }}</a>
+                    @endcan
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm table-hover">
+                                <tr <?= $counter = 0 ?>>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Title / Body</th>
+                                    <th width="220px" class=" align-content-center align-items-center">Action</th>
+                                </tr>
+                                @foreach ($products as $product)
+                                    <tr>
+                                        <th scope="row">
+                                            <smll class="text-muted fst-italic">
+                                                #.{{ ++$counter }}
+                                            </smll>
+                                        </th>
+                                        <td>
+                                            <small class="text-muted fst-italic">
+                                                @if ($product->booked_from && $product->booked_to)
+                                                    {{ \Carbon\Carbon::parse($product->booked_from)->format('Y-m-d H:i') }}
+                                                    -
+                                                    {{ \Carbon\Carbon::parse($product->booked_to)->format('Y-m-d H:i') }}
+                                                @else
+                                                    {{ __('Not booked') }}
+                                                @endif
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                {!! nl2br($product->name) !!}
+                                            </p>
+                                            {!! nl2br($product->detail) !!}
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="justify-content-end align-content-end d-flex gap-2">
+                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                    <a class="btn btn-info btn-sm"
+                                                        href="{{ route('products.show', $product->id) }}"><i
+                                                            class="fa-solid fa-list"></i> Show</a>
+                                                    @can('product-edit')
+                                                        <a class="btn btn-primary btn-sm"
+                                                            href="{{ route('products.edit', $product->id) }}"><i
+                                                                class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                                    @endcan
 
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($products as $product)
-            <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->detail }}</td>
-                <td>
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                        <a class="btn btn-info btn-sm" href="{{ route('products.show', $product->id) }}"><i
-                                class="fa-solid fa-list"></i> Show</a>
-                        @can('product-edit')
-                            <a class="btn btn-primary btn-sm" href="{{ route('products.edit', $product->id) }}"><i
-                                    class="fa-solid fa-pen-to-square"></i> Edit</a>
-                        @endcan
+                                                    @csrf
+                                                    @method('DELETE')
 
-                        @csrf
-                        @method('DELETE')
-
-                        @can('product-delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                                Delete</button>
-                        @endcan
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
-
-    {!! $products->links() !!}
-
+                                                    @can('product-delete')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="fa-solid fa-trash"></i>
+                                                            Delete</button>
+                                                    @endcan
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            {!! $products->links() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

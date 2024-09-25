@@ -18,6 +18,8 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -58,7 +60,7 @@
                             @can('admin-tools')
                                 <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                                 <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-                                <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
+                                <li><a class="nav-link" href="{{ route('products.index') }}">Manage Reservations</a></li>
                                 <li><a class="nav-link" href="{{ route('permissions.index') }}">Manage Permission</a></li>
                             @endcan
 
@@ -85,21 +87,9 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                @yield('content')
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @yield('content')
         </main>
-
     </div>
 </body>
 
