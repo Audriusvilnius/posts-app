@@ -28,7 +28,7 @@
                                     <th scope="col">Title / Body</th>
                                     <th width="240px" class=" align-content-center align-items-center">Action</th>
                                 </tr>
-                                @foreach ($products as $product)
+                                @forelse ($products as $product)
                                     <tr>
                                         <th scope="row">
                                             <smll class="text-muted fst-italic">
@@ -75,7 +75,15 @@
                                         </td>
                                     </tr>
                                     @include('products.modal.delete')
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center align-middle">
+                                            <h3 class="p-3 fst-italic">
+                                                {{ __('No reservations found!') }}
+                                            </h3>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </table>
                             {!! $products->links() !!}
                         </div>

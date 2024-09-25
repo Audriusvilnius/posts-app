@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
                     <h2>{{ __('Show Reservation') }}</h2>
-                    <a class="btn btn-secondary btn-sm mb-2 px-4" href="{{ route('products.index') }}"> Back</a>
+                    <a class="btn btn-secondary btn-sm mb-2 px-4" href="{{ route('products.index') }}">{{ __('Back') }}</a>
                 </div>
             </div>
             <div class="card shadow">

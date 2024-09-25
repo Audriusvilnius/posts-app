@@ -43,7 +43,6 @@
                                                         href="{{ route('roles.edit', $role->id) }}"><i
                                                             class="fa-solid fa-pen-to-square"></i> Edit</a>
                                                 @endcan
-
                                                 @can('role-delete')
                                                     <div class="">
                                                         <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
@@ -51,25 +50,16 @@
                                                                 class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
                                                         </a>
                                                     </div>
-                                                    <form method="POST" action="{{ route('roles.destroy', $role->id) }}"
-                                                        style="display:inline">
-                                                        @csrf
-                                                        @method('DELETE')
-
-                                                        <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                class="fa-solid fa-trash"></i>
-                                                            Delete</button>
-                                                    </form>
                                                 @endcan
                                             </div>
                                         </td>
                                     </tr>
+                                    @include('roles.modal.delete')
                                 @endforeach
                             </table>
                         </div>
                     </div>
                 </div>
-                @include('roles.modal.delete')
             </div>
             <div class="d-flex justify-content-center">
                 {!! $roles->links('pagination::bootstrap-5') !!}

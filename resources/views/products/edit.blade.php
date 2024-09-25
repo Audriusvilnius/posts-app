@@ -6,11 +6,9 @@
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
                     <h2>{{ __('Edit Reservations') }}</h2>
-                    <div class="pull-right">
-                        <a class="btn btn-secondary btn-sm mb-2 px-4" href="{{ route('products.index') }}"><i
-                                class="fa fa-arrow-left"></i>
-                            Back</a>
-                    </div>
+                    <a class="btn btn-secondary btn-sm mb-2 px-3" href="{{ route('products.index') }}"><i
+                            class="fa fa-arrow-left me-2"></i>
+                        {{ __('Back') }}</a>
                 </div>
             </div>
             @if ($errors->any())
