@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="justify-content-center">
-            <div class="row">
-                <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
+            <div class="row py-3">
+                <div class="col-lg-4  d-flex justify-content-between align-content-center align-items-center m-auto">
                     <h2>{{ __('Edit Role') }}</h2>
                     <a class="btn btn-secondary btn-sm mb-2 px-3" href="{{ route('roles.index') }}"><i
                             class="fa fa-arrow-left me-2 "></i>
@@ -12,17 +12,17 @@
                 </div>
             </div>
 
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            <div class="col-md-12">
+            <div class="col-md-4 m-auto">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card shadow">
                     <div class="card-body">
                         <form method="POST" action="{{ route('roles.update', $role->id) }}">

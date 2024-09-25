@@ -13,32 +13,9 @@
                 </div>
             </div>
         </div>
-        @if (Session::has('ok'))
-            <div class="col-md-12 mt-1 rounded m-auto text-center">
-                <h6 class=" alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('ok') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </h6>
-            </div>
-        @endif
-        @if (Session::has('not'))
-            <div class="col-md-12 mt-1 rounded m-auto text-center">
-                <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ Session::get('not') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </h6>
-            </div>
-        @endif
-        @session('success')
-            <div class="alert alert-success" role="alert">
-                {{ $value }}
-            </div>
-        @endsession
-        @if ($errors->any())
+        @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <div class="align-content-center align-items-center justify-center">
-                    {{ __('Klaida pateikiant duomenis') }}<br>
-                </div>
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
