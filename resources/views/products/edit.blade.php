@@ -27,7 +27,7 @@
                         <form action="{{ route('products.update', $product->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-xs-12 col-sm-12 col-md-2">
                                     <div class="form-group">
                                         <strong>{{ __('Date and Time from') }}:</strong>
@@ -44,15 +44,15 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-8">
                                     <div class="form-group">
-                                        <strong>Name:</strong>
+                                        <strong>{{ __('Title') }}:</strong>
                                         <input type="text" name="name" value="{{ $product->name }}"
                                             class="form-control" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Detail:</strong>
-                                        <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $product->detail }}</textarea>
+                                        <strong>{{ __('Body') }}:</strong>
+                                        <textarea class="form-control" style="resize:none;min-height:200px;" name="detail" placeholder="Detail">{{ $product->detail }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center px-3 justify-content-end d-flex py-3">

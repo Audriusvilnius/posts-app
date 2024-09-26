@@ -11,7 +11,7 @@
             </div>
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row g-3">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <small class="text-muted fst-italic">
                                 @if ($product->booked_from && $product->booked_to)
@@ -20,6 +20,11 @@
                                     {{ \Carbon\Carbon::parse($product->booked_to)->format('Y-m-d H:i') }}
                                 @else
                                     {{ __('Not booked') }}
+                                @endif
+                            </small>
+                            <small class="text-muted fst-italic">
+                                @if ($product->user_id)
+                                    {{ __('by') }} {{ $product->user->name }}
                                 @endif
                             </small>
                         </div>

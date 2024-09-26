@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -58,6 +59,8 @@ class ProductController extends Controller
             'booked_from' => 'required|date|after:today',
             'booked_to' => 'required|date|after:booked_from',
         ]);
+        $request['user_id'] = Auth::id();
+
 
         Product::create($request->all());
 
@@ -84,7 +87,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-
         return view('products.edit', compact('product'));
     }
 

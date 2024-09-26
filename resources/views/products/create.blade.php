@@ -33,8 +33,8 @@
                                 <div class="form-group">
                                     <strong>{{ __('Date and Time from') }}:</strong>
                                     <input type="datetime-local" name="booked_from" class="form-control"
-                                        value="{{ old('booked_from', now()->format('Y-m-d\TH:i')) }}"
-                                        min="{{ now()->format('Y-m-d\TH:i') }}">
+                                        value="{{ old('booked_from', \Carbon\Carbon::now()->format('Y-m-d\TH:i')) }}"
+                                        min="{{ \Carbon\Carbon::now()->format('Y-m-d\TH:i') }}">
                                 </div>
                             </div>
                             <div class="col-xs-12
@@ -42,8 +42,8 @@
                                 <div class="form-group">
                                     <strong>{{ __('Date and Time to') }}:</strong>
                                     <input type="datetime-local" name="booked_to" class="form-control" placeholder="date to"
-                                        value="{{ old('booked_to', now()->format('Y-m-d\TH:i')) }}"
-                                        min="{{ now()->format('Y-m-d\TH:i') }}">
+                                        value="{{ old('booked_to', \Carbon\Carbon::now()->addHours(1)->format('Y-m-d\TH:i')) }}"
+                                        min="{{ \Carbon\Carbon::now()->format('Y-m-d\TH:i') }}">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-8">

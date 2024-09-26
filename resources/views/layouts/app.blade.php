@@ -57,11 +57,31 @@
                                 </li>
                             @endif
                         @else
+                            @can('product-list')
+                                <li><a class="nav-link"
+                                        href="{{ route('products.index') }}">{{ __('Manage Reservations') }}</a></li>
+                            @endcan
                             @can('admin-tools')
-                                <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                                <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-                                <li><a class="nav-link" href="{{ route('products.index') }}">Manage Reservations</a></li>
-                                <li><a class="nav-link" href="{{ route('permissions.index') }}">Manage Permission</a></li>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle me-1" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Admin') }}
+                                    </a>
+                                    <div class="dropdown-menu   " aria-labelledby="navbarDropdown">
+                                        @can('user-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('users.index') }}">{{ __('Manage Users') }}</a>
+                                        @endcan
+                                        @can('role-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('roles.index') }}">{{ __('Manage Role') }}</a>
+                                        @endcan
+                                        @can('permission-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('permissions.index') }}">{{ __('Manage Permission') }}</a>
+                                        @endcan
+                                    </div>
+                                </li>
                             @endcan
 
                             <li class="nav-item dropdown">

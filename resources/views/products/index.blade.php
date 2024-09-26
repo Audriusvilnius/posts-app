@@ -24,13 +24,13 @@
                             <table class="table table-bordered table-sm table-hover">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Date</th>
+                                    <th width="240px">Date</th>
                                     <th scope="col">Title / Body</th>
                                     <th width="240px" class=" align-content-center align-items-center">Action</th>
                                 </tr>
                                 @forelse ($products as $product)
                                     <tr>
-                                        <th scope="row">
+                                        <th scope="row g-3">
                                             <smll class="text-muted fst-italic">
                                                 {{ ++$i }}
                                             </smll>
@@ -45,12 +45,19 @@
                                                     {{ __('Not booked') }}
                                                 @endif
                                             </small>
+                                            <small class="text-muted fst-italic">
+                                                @if ($product->user_id)
+                                                    {{ __('by') }} {{ $product->user->name }}
+                                                @endif
+                                            </small>
                                         </td>
                                         <td>
                                             <p>
                                                 {!! nl2br($product->name) !!}
                                             </p>
-                                            {!! nl2br($product->detail) !!}
+                                            <small>
+                                                {!! nl2br($product->detail) !!}
+                                            </small>
                                         </td>
                                         <td class="align-middle">
                                             <div class="justify-content-center align-content-end d-flex gap-2">

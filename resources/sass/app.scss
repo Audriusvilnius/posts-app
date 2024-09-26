@@ -7,3 +7,15 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+#navbar .nav-item:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 5px;
+
+}
