@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
+});
+
+Route::get('/second', function () {
+    return view('second');
 });
 
 Auth::routes();
@@ -23,4 +27,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', User::class);
     Route::resource('products', Product::class);
     Route::resource('permissions', Permission::class);
+
 });

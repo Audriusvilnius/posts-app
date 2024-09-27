@@ -7,8 +7,8 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/front/js/app.js',
-                'resources/front/sass/app.scss',
+                'resources/css/main.css',
+                'resources/css/font-awesome.min.css'
             ],
             refresh: true,
         }),

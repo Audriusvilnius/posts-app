@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $products = Product::where('booked_from', '>', now())->get();
+        $products = Product::all();
+        $products->map(function ($product) {
+            $product->booked_from_date = date('Y-m-d', strtotime($product->booked_from));
+            $product->booked_to_date = date('Y-m-d', strtotime($product->booked_to));
+            $product->booked_from_hours = date('H:i', strtotime($product->booked_from));
+            $product->booked_to_hours = date('H:i', strtotime($product->booked_to));
+
+            $product->deference = Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to));
+
+            return $product;
+        });
+
+        return view('home', [
+            'products' => $products,
+        ]);
     }
 }
