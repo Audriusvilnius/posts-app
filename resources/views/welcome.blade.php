@@ -23,9 +23,12 @@
 
 
     <header id="header" class="alt">
-        <div class="logo"><a href="index.html">Transitive <span>by TEMPLATED</span></a></div>
+        <div class="logo">
+            <a href="http://www.ivko.org" target="_balnk">Audrius Ivko PIT-21-I-NT <span>by TEMPLATED</span></a>
+            <a href=""></a>
+        </div>
         @if (Route::has('login'))
-            <nav class="-mx-3 flex flex-1 justify-end">
+            <nav class="-mx-3 flex flex-1 justify-end me-5">
                 @auth
                     <a href="{{ url('/home') }}"
                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
@@ -33,7 +36,7 @@
                     </a>
                 @else
                     <a href="{{ route('login') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition  hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                         Log in
                     </a>
 
@@ -77,24 +80,42 @@
                     </div>
                     <div class="content">
                         <header class="align-center">
-                            <h2>Lorem ipsum dolor</h2>
-                            <p>maecenas feugiat ex purus, quis volutpat lacus placerat</p>
+                            <h2>List of conferences</h2>
+                            <p>The agency will host a series of conferences focused on discussing innovations in
+                                information technology and systems, bringing together specialists from various fields to
+                                collaborate, share experiences, and exchange best practices.</p>
                         </header>
-                        <hr>
-                        <p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet
-                            tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus,
-                            quis volutpat lacus placerat malesuada. Praesent in sem ex. Morbi mattis sapien pretium
-                            tellus venenatis, at egestas urna ornare.</p>
-                        <p>Vivamus fermentum nibh vel pharetra blandit. Cras a purus urna. Sed et libero ex. Orci varius
-                            natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse id
-                            hendrerit felis. Nulla viverra tempor dui at congue. Pellentesque quis nulla ornare, congue
-                            nisi id, finibus nulla. Aliquam sit amet hendrerit purus. Donec libero massa, posuere
-                            fermentum eros sit amet, maximus fringilla augue. Maecenas at rhoncus lorem. Vivamus
-                            ultricies consequat est, efficitur convallis libero. Vivamus rutrum semper mauris, vitae
-                            consequat eros tempor ac. Pellentesque et ornare sapien</p>
+                        @forelse ($products as $product)
+                            <hr>
+                            <h3> {{ $product->name }}</h3>
+                            <p>
+                                @if ($product->booked_from_date === $product->booked_to_date)
+                                    {{ $product->booked_from_date }} from
+                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }} to
+                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }} duration of
+                                    the event
+                                    {{ $product->deference }}min
+                            </p>
+                        @else
+                            {{ $product->booked_from_date }} from
+                            {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                            until
+                            {{ $product->booked_to_date }} to
+                            {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                            <p>
+                                The duration of the event
+                                {{ $product->deference }}min
+                            </p>
+                        @endif
+                        </p>
+                        <p>{{ $product->detail }}</p>
+                    @empty
+                        <p>No products found</p>
                     </div>
+                    @endforelse
                 </div>
             </div>
+        </div>
         </div>
     </section><!-- Two -->
     <section id="two" class="wrapper style3" style="background-image: url({{ asset('images/bg.jpg') }})">
