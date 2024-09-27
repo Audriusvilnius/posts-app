@@ -79,38 +79,47 @@
                         <img src="{{ asset('images/arh.jpeg') }}" alt="" width="3472" height="1035">
                     </div>
                     <div class="content">
-                        <header class="align-center">
+                        <header class="align-center py-5">
                             <h2>List of conferences</h2>
                             <p>The agency will host a series of conferences focused on discussing innovations in
                                 information technology and systems, bringing together specialists from various fields to
                                 collaborate, share experiences, and exchange best practices.</p>
+
                         </header>
                         @forelse ($products as $product)
-                            <hr>
-                            <h3> {{ $product->name }}</h3>
-                            <p>
-                                @if ($product->booked_from_date === $product->booked_to_date)
+                            @if ($product->booked_from_date === $product->booked_to_date)
+                                <h5 class=" fst-italic">
                                     {{ $product->booked_from_date }} from
                                     {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }} to
-                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }} duration of
-                                    the event
-                                    {{ $product->deference }}min
-                            </p>
-                        @else
-                            {{ $product->booked_from_date }} from
-                            {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                            until
-                            {{ $product->booked_to_date }} to
-                            {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                            <p>
-                                The duration of the event
-                                {{ $product->deference }}min
-                            </p>
-                        @endif
-                        </p>
-                        <p>{{ $product->detail }}</p>
-                    @empty
-                        <p>No products found</p>
+                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                </h5>
+                                <h6 class=" fst-italic text-muted">
+                                    The duration of the event aproximately
+                                    {{ $product->deference }} min.
+                                </h6>
+                                <h3> {{ $product->name }}</h3>
+                                <p> {!! nl2br($product->detail) !!}</p>
+                                <h5 class="text-muted fst-italic">Conference lecturer: {{ $product->user->name }}</h5>
+                                <hr>
+                            @else
+                                <h5 class=" fst-italic">
+                                    {{ $product->booked_from_date }} from
+                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                    until
+                                    {{ $product->booked_to_date }} to
+                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                </h5>
+                                <h6 class=" fst-italic text-muted">
+                                    The duration of the event aproximately
+                                    {{ $product->deference }} min.
+                                </h6>
+                                <h3> {{ $product->name }}</h3>
+                                <p> {!! nl2br($product->detail) !!}</p>
+                                <h5 class="text-muted fst-italic">Conference lecturer: {{ $product->user->name }}</h5>
+                                <hr>
+                            @endif
+                        @empty
+                            <p>No conferences found</p>
                     </div>
                     @endforelse
                 </div>

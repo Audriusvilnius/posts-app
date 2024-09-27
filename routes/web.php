@@ -25,7 +25,7 @@ Route::get('/', function () {
                 $product->deference = Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to));
 
                 return $product;
-            })->sortBy('booked_from_date')
+            })->sortBy('booked_from')
 
         ]
     );
