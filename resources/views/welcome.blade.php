@@ -173,15 +173,18 @@
                             <img src="{{ asset('images/pic02.jpg') }}" alt="" width="3472" height="1236">
                         </div>
                         <div class="content">
+                            @php
+                                $faker = Faker\Factory::create();
+                                $faker_header = $faker->realText(500);
+                                $faker_free_text = $faker->sentence;
+                                $faker_title = $faker->sentence;
+                            @endphp
                             <header class="align-center">
-                                <h2>Lorem ipsum dolor</h2>
-                                <p>maecenas feugiat ex purus, quis volutpat lacus placerat</p>
+                                <h2>{{ $faker_title }}</h2>
+                                <p>{{ $faker_free_text }}</p>
                             </header>
                             <hr>
-                            <p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit
-                                amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex
-                                purus, quis volutpat lacus placerat malesuada. Praesent in sem ex. Morbi mattis sapien
-                                pretium tellus venenatis, at egestas urna ornare.</p>
+                            <p> {{ $faker_header }}</p>
                         </div>
                     </div>
                 </div>
@@ -192,15 +195,18 @@
                             <img src="{{ asset('images/pic03.jpg') }}" alt="" width="3472" height="1236">
                         </div>
                         <div class="content">
+                            @php
+                                $faker = Faker\Factory::create();
+                                $faker_header = $faker->realText(500);
+                                $faker_free_text = $faker->sentence;
+                                $faker_title = $faker->sentence;
+                            @endphp
                             <header class="align-center">
-                                <h2>Vestibulum sit amet</h2>
-                                <p>mattis sapien pretium tellus venenatis</p>
+                                <h2>{{ $faker_title }}</h2>
+                                <p>{{ $faker_free_text }}</p>
                             </header>
                             <hr>
-                            <p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit
-                                amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex
-                                purus, quis volutpat lacus placerat malesuada. Praesent in sem ex. Morbi mattis sapien
-                                pretium tellus venenatis, at egestas urna ornare.</p>
+                            <p> {{ $faker_header }}</p>
                         </div>
                     </div>
                 </div>
@@ -211,11 +217,15 @@
         <div class="inner">
 
             <header class="align-center">
-                <h2>Morbi interdum mollis sapien</h2>
-                <p>Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor
-                    velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat
-                    lacus placerat malesuada. Praesent in sem ex. Morbi mattis sapien pretium tellus venenatis, at
-                    egestas urna ornare.</p>
+                @php
+                    $faker = Faker\Factory::create();
+                    $faker_text = $faker->realText(1660);
+                    $faker_head = $faker->sentence;
+                @endphp
+                <h2>{{ $faker_head }}</h2>
+                <p>{{ $faker->sentence }}</p>
+                <p>{{ $faker_text }}</p>
+
             </header>
         </div>
     </section><!-- Footer -->
