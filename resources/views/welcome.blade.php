@@ -35,11 +35,9 @@
                         Dashboard
                     </a>
                 @else
-                    <a href="{{ route('login') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition  hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Log in
-                    </a>
-
+                    </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
@@ -49,15 +47,9 @@
                 @endauth
             </nav>
         @endif
-        <a href="#menu" class="toggle"><span>Menu</span></a>
-    </header><!-- Nav -->
-    <nav id="menu">
-        <ul class="links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="generic.html">Generic</a></li>
-            <li><a href="elements.html">Elements</a></li>
-        </ul>
-    </nav><!-- Banner --><!--
+    </header>
+    @include('logon')
+    <!-- Banner --><!--
    To use a video as your background, set data-video to the name of your video without
    its extension (eg. images/banner). Your video must be available in both .mp4 and .webm
    formats to work correctly.
@@ -119,12 +111,13 @@
                                 <hr>
                             @endif
                         @empty
-                            <p>No conferences found</p>
+                            <div class=" justify-content-center d-flex">
+                                <h3>No conferences found!</h3>
+                            </div>
+                        @endforelse
                     </div>
-                    @endforelse
                 </div>
             </div>
-        </div>
         </div>
     </section><!-- Two -->
     <section id="two" class="wrapper style3" style="background-image: url({{ asset('images/bg.jpg') }})">
@@ -166,7 +159,6 @@
     <section id="three" class="wrapper style2">
         <div class="inner">
             <div class="grid-style">
-
                 <div>
                     <div class="box">
                         <div class="image fit">

@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -23,12 +24,37 @@ class ProductController extends Controller
         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
     /**
+     * Display a listing of the resource start page.
+     * @return \Illuminate\View\View
+     */
+    public function welcome(): View
+    {
+        return view(
+            'welcome',
+            [
+                'products' => Product::all()->map(function ($product) {
+                    $product->booked_from_date = date('Y-m-d', strtotime($product->booked_from));
+                    $product->booked_to_date = date('Y-m-d', strtotime($product->booked_to));
+                    $product->booked_from_hours = date('H:i', strtotime($product->booked_from));
+                    $product->booked_to_hours = date('H:i', strtotime($product->booked_to));
+                    $product->deference = round(Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to)), 2);
+
+                    return $product;
+                })->sortBy('booked_from')
+
+            ]
+        );
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(): View
     {
+
         $products = Product::latest()->paginate(5);
 
         return view('products.index', compact('products'))
@@ -125,4 +151,5 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'Product deleted successfully');
     }
+
 }
