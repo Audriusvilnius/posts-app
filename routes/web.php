@@ -13,9 +13,9 @@ Route::get('/', function () {
     return redirect('/welcome');
 });
 
-Route::get('/second', function () {
-    return view('second');
-});
+// Route::get('/second', function () {
+//     return view('second');
+// });
 
 Auth::routes();
 
