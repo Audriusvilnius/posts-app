@@ -25,7 +25,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                        Delete</button>
+                        {{ __('Delete') }}</button>
                 </form>
             </div>
         </div>

@@ -21,8 +21,6 @@
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <header id="header" class="alt">
-
-
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
                 <div class="float-start ms-5">

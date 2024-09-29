@@ -24,9 +24,10 @@
                             <table class="table table-bordered table-sm table-hover">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th width="240px">Date</th>
-                                    <th scope="col">Title / Body</th>
-                                    <th width="240px" class=" align-content-center align-items-center">Action</th>
+                                    <th width="240px">{{ __('Date') }}</th>
+                                    <th scope="col">{{ __('Title / Body') }}</th>
+                                    <th width="240px" class=" align-content-center align-items-center">{{ __('Action') }}
+                                    </th>
                                 </tr>
                                 @forelse ($products as $product)
                                     <tr>

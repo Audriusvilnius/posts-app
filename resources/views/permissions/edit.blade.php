@@ -15,7 +15,8 @@
             <div class="col-md-4 m-auto">
                 @if ($errors->any())
                     <div class="alert alert-danger">
-                        <strong>Opps!</strong> Something went wrong, please check below errors.<br><br>
+                        <strong>{{ __('Opps!') }}</strong>
+                        {{ __('Something went wrong, please check below errors.') }}<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -31,7 +32,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Name:</strong>
+                                        <strong>{{ _('Name') }}:</strong>
                                         <input type="text" name="name" value="{{ $permission->name }}"
                                             class="form-control" placeholder="Name">
                                     </div>

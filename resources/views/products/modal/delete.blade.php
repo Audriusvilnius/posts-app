@@ -4,11 +4,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="deleteProduct{{ $product->id }}">
-                    {{ __('Delete rezervation') }}</h1>
+                    {{ __('Delete reservation') }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                {{ __('Delete rezervation') }}
+                {{ __('Delete reservation') }}
                 <b>
                     <i>
                         <code>
@@ -32,7 +32,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                        Delete</button>
+                        {{ __('Delete') }}</button>
                 </form>
             </div>
         </div>

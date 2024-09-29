@@ -29,7 +29,7 @@
                                 <th scope="col">#</th>
                                 <th cope="col">ID</th>
                                 <th cope="col">Details</th>
-                                <th width="180px" class=" align-content-center align-items-center">Action</th>
+                                <th width="180px" class=" align-content-center align-items-center">{{ __('Action') }}</th>
                             </tr>
                             @forelse ($data as $key => $permission)
                                 <tr>
