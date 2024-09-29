@@ -21,10 +21,8 @@
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <header id="header" class="alt">
-        <div class="logo">
-            <a href="http://www.ivko.org" target="_balnk">Audrius Ivko PIT-21-I-NT <span>by TEMPLATED</span></a>
-            <a href=""></a>
-        </div>
+
+
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
                 @auth
@@ -32,12 +30,13 @@
                         Dashboard
                     </a>
                 @else
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-warning px-4" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
                         Log in
                     </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            class="rounded-md px-3 py-2 text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             Register
                         </a>
                     @endif
@@ -259,7 +258,10 @@
         </div>
     </footer>
     <div class="copyright">
-        Powered by: <a href="https://templated.co/">Templated.co</a>.
+        Powered by: <a href="https://templated.co/">Templated.co</a>,
+
+        <a href="http://www.ivko.org" target="_balnk">Audrius Ivko PIT-21-I-NT </a>
+
     </div>
 
     <!-- Scripts -->
