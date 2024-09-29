@@ -25,6 +25,19 @@
 
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
+                <div class="float-start ms-5">
+                    <h3 class="float-md-start mb-0"><img src="" alt="" srcset=""></h3>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                        {{-- <form id="langform" action="{{ route('user.lang') }}" method="get" class="d-flex align-items-center"> --}}
+                        <select class="form-select" name="lang" id="lang" onchange="this.form.submit()">
+                            <option disabled>Language</option>
+                            <option value="en" @if (Session::get('locale', 'en') == 'en') selected @endif> English</option>
+                            <option value="fr" @if (session('locale') == 'lt') selected @endif> Lithuania
+                            </option>
+                        </select>
+                        {{-- </form> --}}
+                    </nav>
+                </div>
                 @auth
                     <a href="{{ url('/home') }}" class="btn btn-outline-light">
                         Dashboard
@@ -51,13 +64,13 @@
    formats to work correctly.
   -->
     <section id="banner" data-video="images/banner" style="background-image: url({{ asset('images/banner.jpg') }})">
-        <div class="inner">
+        < <div class="inner">
             <h1>Transitive</h1>
             <p>A full responsive, business-oriented HTML5/CSS3 template<br>
                 built by <a href="https://templated.co/">Templated</a> and released under the <a
                     href="https://templated.co/license">Creative Commons</a>.</p>
             <a href="#one" class="button special scrolly">Get Started</a>
-        </div>
+            </div>
     </section><!-- One -->
     <section id="one" class="wrapper style2">
         <div class="inner">
