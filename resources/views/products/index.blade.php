@@ -64,19 +64,22 @@
                                                 <a class="btn btn-info btn-sm"
                                                     href="{{ route('products.show', $product->id) }}"><i
                                                         class="fa-solid fa-list me-2"></i>{{ __('Show') }}</a>
-                                                @can('product-edit')
-                                                    <a class="btn btn-primary btn-sm px-2"
-                                                        href="{{ route('products.edit', $product->id) }}"><i
-                                                            class="fa-solid fa-pen-to-square me-2"></i>{{ __('Edit') }}</a>
-                                                @endcan
-                                                @can('product-delete')
-                                                    <div class="">
-                                                        <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                            data-bs-target="#deleteProduct{{ $product->id }}"><i
-                                                                class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
-                                                        </a>
-                                                    </div>
-                                                @endcan
+                                                @if ($product->isOwner === $product->user_id)
+                                                    @can('product-edit')
+                                                        <a class="btn btn-primary btn-sm px-2"
+                                                            href="{{ route('products.edit', $product->id) }}"><i
+                                                                class="fa-solid fa-pen-to-square me-2"></i>{{ __('Edit') }}</a>
+                                                    @endcan
+                                                    @can('product-delete')
+                                                        <div class="">
+                                                            <a type="button" class="btn btn-danger btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#deleteProduct{{ $product->id }}"><i
+                                                                    class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
+                                                            </a>
+                                                        </div>
+                                                    @endcan
+                                                @endif
                                                 </form>
                                             </div>
                                         </td>

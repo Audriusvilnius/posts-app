@@ -20,8 +20,6 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-
-
     <header id="header" class="alt">
         <div class="logo">
             <a href="http://www.ivko.org" target="_balnk">Audrius Ivko PIT-21-I-NT <span>by TEMPLATED</span></a>
@@ -30,8 +28,7 @@
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
                 @auth
-                    <a href="{{ url('/home') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                    <a href="{{ url('/home') }}" class="btn btn-outline-light">
                         Dashboard
                     </a>
                 @else
@@ -159,27 +156,26 @@
     <section id="three" class="wrapper style2">
         <div class="inner">
             <div class="grid-style">
-                <div>
-                    <div class="box">
-                        <div class="image fit">
-                            <img src="{{ asset('images/pic02.jpg') }}" alt="" width="3472" height="1236">
-                        </div>
-                        <div class="content">
-                            @php
-                                $faker = Faker\Factory::create();
-                                $faker_header = $faker->realText(500);
-                                $faker_free_text = $faker->sentence;
-                                $faker_title = $faker->sentence;
-                            @endphp
-                            <header class="align-center">
-                                <h2>{{ $faker_title }}</h2>
-                                <p>{{ $faker_free_text }}</p>
-                            </header>
-                            <hr>
-                            <p> {{ $faker_header }}</p>
-                        </div>
+                <div class="box">
+                    <div class="image fit">
+                        <img src="{{ asset('images/pic02.jpg') }}" alt="" width="3472" height="1236">
+                    </div>
+                    <div class="content">
+                        @php
+                            $faker = Faker\Factory::create();
+                            $faker_header = $faker->realText(500);
+                            $faker_free_text = $faker->sentence;
+                            $faker_title = $faker->sentence;
+                        @endphp
+                        <header class="align-center">
+                            <h2>{{ $faker_title }}</h2>
+                            <p>{{ $faker_free_text }}</p>
+                        </header>
+                        <hr>
+                        <p> {{ $faker_header }}</p>
                     </div>
                 </div>
+
 
                 <div>
                     <div class="box">

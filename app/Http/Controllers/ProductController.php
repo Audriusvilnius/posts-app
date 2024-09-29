@@ -46,7 +46,6 @@ class ProductController extends Controller
         );
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -54,11 +53,17 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-
-        $products = Product::latest()->paginate(5);
+        $products = $this->getProductsForUser();
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    private function getProductsForUser()
+    {
+        return Auth::user()->hasRole('Admin')
+            ? Product::latest()->paginate(5)
+            : Product::where('user_id', Auth::id())->latest()->paginate(5);
     }
 
     /**
