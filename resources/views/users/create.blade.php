@@ -16,7 +16,7 @@
         <div class="col-md-6 m-auto">
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>{{ __('Whoops!') }}</strong>{{ __('There were some problems with your input') }}.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -31,33 +31,33 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <strong>Name:</strong>
+                                    <strong>{{ __('Name') }}:</strong>
                                     <input type="text" name="name" placeholder="Name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <strong>Email:</strong>
+                                    <strong>{{ __('Email') }}:</strong>
                                     <input type="email" name="email" placeholder="Email" class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <strong>Password:</strong>
+                                    <strong>{{ __('Password') }}:</strong>
                                     <input type="password" name="password" placeholder="Password" class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <strong>Confirm Password:</strong>
+                                    <strong>{{ __('Confirm Password') }}:</strong>
                                     <input type="password" name="confirm-password" placeholder="Confirm Password"
                                         class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
-                                    <strong>Role:</strong>
-                                    <select name="roles[]" <select class="form-select">
+                                    <strong>{{ __('Role') }}:</strong>
+                                    <select name="roles[]" class="form-select">
                                         @foreach ($roles as $value => $label)
                                             <option value="{{ $value }}">
                                                 {{ $label }}

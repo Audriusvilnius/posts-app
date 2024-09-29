@@ -15,7 +15,7 @@
             <div class="col-md-4 m-auto">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <strong>{{ __('Whoops!') }}</strong>{{ __('There were some problems with your input') }}.<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -31,14 +31,14 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group py-4">
-                                        <strong>Name:</strong>
+                                        <strong>{{ __('Name') }}:</strong>
                                         <input type="text" name="name" placeholder="Name" class="form-control"
                                             value="{{ $role->name }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Permission:</strong>
+                                        <strong>{{ __('Permission') }}:</strong>
                                         <br />
                                         @foreach ($permission as $value)
                                             <label><input type="checkbox" name="permission[{{ $value->id }}]"

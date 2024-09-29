@@ -28,7 +28,7 @@
                     <nav class="nav nav-masthead justify-content-center float-md-end">
                         {{-- <form id="langform" action="{{ route('user.lang') }}" method="get" class="d-flex align-items-center"> --}}
                         <select class="form-select" name="lang" id="lang" onchange="this.form.submit()">
-                            <option disabled>Language</option>
+                            <option disabled>{{ __('Language') }}</option>
                             <option value="en" @if (Session::get('locale', 'en') == 'en') selected @endif> English</option>
                             <option value="fr" @if (session('locale') == 'lt') selected @endif> Lithuania
                             </option>
@@ -38,17 +38,17 @@
                 </div>
                 @auth
                     <a href="{{ url('/home') }}" class="btn btn-outline-light">
-                        Dashboard
+                        {{ __('Dashboard') }}
                     </a>
                 @else
                     <button type="button" class="btn btn-warning px-4" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
-                        Log in
+                        {{ __('Log in') }}
                     </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="rounded-md px-3 py-2 text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                            Register
+                            {{ __('Register') }}
                         </a>
                     @endif
                 @endauth
@@ -63,11 +63,12 @@
   -->
     <section id="banner" data-video="images/banner" style="background-image: url({{ asset('images/banner.jpg') }})">
         < <div class="inner">
-            <h1>Transitive</h1>
-            <p>A full responsive, business-oriented HTML5/CSS3 template<br>
-                built by <a href="https://templated.co/">Templated</a> and released under the <a
-                    href="https://templated.co/license">Creative Commons</a>.</p>
-            <a href="#one" class="button special scrolly">Get Started</a>
+            <h1>{{ __('Transitive') }}</h1>
+            <p>{{ __('A full responsive, business-oriented HTML5/CSS3 template') }}<br>
+                {{ __('built by') }} <a href="https://templated.co/">{{ __('Templated') }}</a>
+                {{ __('and released under the') }} <a
+                    href="https://templated.co/license">{{ _('Creative Commons') }}</a>.</p>
+            <a href="#one" class="button special scrolly">{{ __('Get Started') }}</a>
             </div>
     </section><!-- One -->
     <section id="one" class="wrapper style2">
@@ -79,11 +80,9 @@
                     </div>
                     <div class="content">
                         <header class="align-center py-5">
-                            <h2>List of conferences</h2>
-                            <p>The agency will host a series of conferences focused on discussing innovations in
-                                information technology and systems, bringing together specialists from various fields to
-                                collaborate, share experiences, and exchange best practices.</p>
-
+                            <h2>{{ __('List of conferences') }}</h2>
+                            <p>{{ __('The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
+                            </p>
                         </header>
                         @forelse ($products as $product)
                             @if ($product->booked_from_date === $product->booked_to_date)
@@ -93,33 +92,35 @@
                                     {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
                                 </h5>
                                 <h6 class=" fst-italic text-muted">
-                                    The duration of the event aproximately
+                                    {{ __('The duration of the event approximately') }}
                                     {{ $product->deference }} min.
                                 </h6>
                                 <h3> {{ $product->name }}</h3>
                                 <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">Conference lecturer: {{ $product->user->name }}</h5>
+                                <h5 class="text-muted fst-italic">{{ __('Conference lecturer') }}:
+                                    {{ $product->user->name }}</h5>
                                 <hr>
                             @else
                                 <h5 class=" fst-italic">
                                     {{ $product->booked_from_date }} from
                                     {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                    until
+                                    {{ __('until') }}
                                     {{ $product->booked_to_date }} to
                                     {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
                                 </h5>
                                 <h6 class=" fst-italic text-muted">
-                                    The duration of the event aproximately
+                                    {{ __('The duration of the event aproximately') }}
                                     {{ $product->deference }} min.
                                 </h6>
                                 <h3> {{ $product->name }}</h3>
                                 <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">Conference lecturer: {{ $product->user->name }}</h5>
+                                <h5 class="text-muted fst-italic">""{{ __('Conference lecturer') }}:
+                                    {{ $product->user->name }}</h5>
                                 <hr>
                             @endif
                         @empty
                             <div class=" justify-content-center d-flex">
-                                <h3>No conferences found!</h3>
+                                <h3>{{ __('No conferences found!') }}</h3>
                             </div>
                         @endforelse
                     </div>
@@ -232,31 +233,31 @@
             <section>
                 <div class="box">
                     <div class="content">
-                        <h2 class="align-center">Get in Touch</h2>
+                        <h2 class="align-center">{{ __('Get in Touch') }}</h2>
                         <hr>
                         <form action="#" method="post">
                             <div class="field half first">
-                                <label for="name">Name</label>
+                                <label for="name">{{ __('Name') }}</label>
                                 <input name="name" id="name" type="text" placeholder="Name">
                             </div>
                             <div class="field half">
-                                <label for="email">Email</label>
+                                <label for="email">{{ __('Email') }}</label>
                                 <input name="email" id="email" type="email" placeholder="Email">
                             </div>
                             <div class="field">
-                                <label for="dept">Department</label>
+                                <label for="dept">{{ __('Department') }}</label>
                                 <div class="select-wrapper">
                                     <select name="dept" id="dept">
-                                        <option value="">- Category -</option>
-                                        <option value="1">Manufacturing</option>
-                                        <option value="1">Shipping</option>
-                                        <option value="1">Administration</option>
-                                        <option value="1">Human Resources</option>
+                                        <option value="">- {{ __('Category') }} -</option>
+                                        <option value="1">{{ __('Manufacturing') }}</option>
+                                        <option value="1">{{ __('Shipping') }}</option>
+                                        <option value="1">{{ __('Administration') }}</option>
+                                        <option value="1">{{ __('Human Resources') }}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="message">Message</label>
+                                <label for="message">{{ __('Message') }}</label>
                                 <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
                             </div>
                             <ul class="actions align-center">
@@ -270,22 +271,9 @@
     </footer>
     <div class="copyright">
         Powered by: <a href="https://templated.co/">Templated.co</a>,
-
         <a href="http://www.ivko.org" target="_balnk">Audrius Ivko PIT-21-I-NT </a>
-
     </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
-
-
-
 </body>

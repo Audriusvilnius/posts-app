@@ -28,7 +28,7 @@
                                     @endforeach
                                 @else
                                     <small class="text-muted fst-italic">
-                                        {{ __('No permissions') }}
+                                        {{ __('No permissions found!') }}
                                     </small>
                                 @endif
                             </div>

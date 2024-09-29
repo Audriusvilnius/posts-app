@@ -5,7 +5,7 @@
         <div class="justify-content-center">
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
-                    <h2>{{ __('Role Managemen') }}t</h2>
+                    <h2>{{ __('Role Management') }}t</h2>
                     @can('role-create')
                         <a class="btn btn-success btn-sm mb-2 px-4"href="{{ route('roles.create') }}"><i
                                 class="fa fa-plus me-2"></i>
@@ -26,8 +26,9 @@
                             <table class="table table-bordered table-sm table-hover">
                                 <tr <?= $counter = 0 ?>>
                                     <th width="100px">#</th>
-                                    <th>Name</th>
-                                    <th width="240px" class=" align-content-center align-items-center">Action</th>
+                                    <th>{{ __('Name') }}</th>
+                                    <th width="240px" class=" align-content-center align-items-center">{{ __('Action') }}
+                                    </th>
                                 </tr>
                                 @foreach ($roles as $key => $role)
                                     <tr>
