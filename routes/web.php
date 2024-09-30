@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController as Home;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\RoleController as Role;
 use App\Http\Controllers\UserController as User;
 use App\Http\Controllers\ProductController as Product;
@@ -32,3 +33,5 @@ Route::group(['middleware' => ['auth']], function () {
 Route::prefix('/welcome')->name('product-')->group(function () {
     Route::get('/', [Product::class, 'welcome'])->name('welcome');
 });
+
+Route::get('langChange', [LangController::class, 'langChange'])->name('langChange');

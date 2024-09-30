@@ -5,11 +5,11 @@
         <div class="justify-content-center">
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
-                    <h2>{{ __('Role Management') }}t</h2>
+                    <h2>{{ __('message.Role Management') }}t</h2>
                     @can('role-create')
                         <a class="btn btn-success btn-sm mb-2 px-4"href="{{ route('roles.create') }}"><i
                                 class="fa fa-plus me-2"></i>
-                            {{ __('Create New Role') }}</a>
+                            {{ __('message.Create New Role') }}</a>
                     @endcan
                 </div>
             </div>
@@ -26,8 +26,9 @@
                             <table class="table table-bordered table-sm table-hover">
                                 <tr <?= $counter = 0 ?>>
                                     <th width="100px">#</th>
-                                    <th>{{ __('Name') }}</th>
-                                    <th width="240px" class=" align-content-center align-items-center">{{ __('Action') }}
+                                    <th>{{ __('message.Name') }}</th>
+                                    <th width="280px" class=" align-content-center align-items-center">
+                                        {{ __('message.Action') }}
                                     </th>
                                 </tr>
                                 @foreach ($roles as $key => $role)
@@ -38,17 +39,17 @@
                                             <div class="justify-content-center align-content-end d-flex gap-2">
                                                 <a class="btn btn-info btn-sm"
                                                     href="{{ route('roles.show', $role->id) }}"><i
-                                                        class="fa-solid fa-list"></i> Show</a>
+                                                        class="fa-solid fa-list"></i> {{ __('message.Show') }}</a>
                                                 @can('role-edit')
                                                     <a class="btn btn-primary btn-sm"
                                                         href="{{ route('roles.edit', $role->id) }}"><i
-                                                            class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                                            class="fa-solid fa-pen-to-square"></i> {{ __('message.Edit') }}</a>
                                                 @endcan
                                                 @can('role-delete')
                                                     <div class="">
                                                         <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                             data-bs-target="#deleteRoles{{ $role->id }}"><i
-                                                                class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
+                                                                class="fa-solid fa-trash me-2"></i>{{ __('message.Delete') }}</button>
                                                         </a>
                                                     </div>
                                                 @endcan

@@ -47,38 +47,38 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('message.Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('message.Register') }}</a>
                                 </li>
                             @endif
                         @else
                             @can('product-list')
                                 <li><a class="nav-link"
-                                        href="{{ route('products.index') }}">{{ __('Manage Reservations') }}</a></li>
+                                        href="{{ route('products.index') }}">{{ __('message.Manage Reservations') }}</a></li>
                             @endcan
                             @can('admin-tools')
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle me-1" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ __('Admin') }}
+                                        {{ __('message.Admin') }}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         @can('user-list')
                                             <a class="nav-link ms-1 me-1"
-                                                href="{{ route('users.index') }}">{{ __('Manage Users') }}</a>
+                                                href="{{ route('users.index') }}">{{ __('message.Manage Users') }}</a>
                                         @endcan
                                         @can('role-list')
                                             <a class="nav-link ms-1 me-1"
-                                                href="{{ route('roles.index') }}">{{ __('Manage Role') }}</a>
+                                                href="{{ route('roles.index') }}">{{ __('message.Manage Role') }}</a>
                                         @endcan
                                         @can('permission-list')
                                             <a class="nav-link ms-1 me-1"
-                                                href="{{ route('permissions.index') }}">{{ __('Manage Permission') }}</a>
+                                                href="{{ route('permissions.index') }}">{{ __('message.Manage Permission') }}</a>
                                         @endcan
                                     </div>
                                 </li>
@@ -94,7 +94,7 @@
                                     <a class="nav-link ms-1 me-1" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('message.Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

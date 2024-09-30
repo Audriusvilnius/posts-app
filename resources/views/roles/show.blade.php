@@ -5,8 +5,8 @@
         <div class="justify-content-center">
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
-                    <h2>{{ __('Show Role') }}</h2>
-                    <a class="btn btn-secondary px-4 mb-2" href="{{ route('roles.index') }}">{{ __('Back') }}</a>
+                    <h2>{{ __('message.Show Role') }}</h2>
+                    <a class="btn btn-secondary px-4 mb-2" href="{{ route('roles.index') }}">{{ __('message.Back') }}</a>
                 </div>
             </div>
             <div class="card shadow">
@@ -14,13 +14,13 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>{{ __('Name') }}:</strong>
+                                <strong>{{ __('message.Name') }}:</strong>
                                 {{ $role->name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>{{ __('Permissions') }}:</strong>
+                                <strong>{{ __('message.Permissions') }}:</strong>
                                 @if (!empty($rolePermissions))
                                     @foreach ($rolePermissions as $v)
                                         <label
@@ -28,7 +28,7 @@
                                     @endforeach
                                 @else
                                     <small class="text-muted fst-italic">
-                                        {{ __('No permissions found!') }}
+                                        {{ __('message.No permissions found!') }}
                                     </small>
                                 @endif
                             </div>

@@ -4,11 +4,11 @@
         <div class="justify-content-center">
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
-                    <h2>{{ __('Permission') }}</h2>
+                    <h2>{{ __('message.Permission') }}</h2>
                     @can('permission-create')
                         <a class="btn btn-success btn-sm mb-2 px-4"href="{{ route('permissions.create') }}"><i
                                 class="fa fa-plus me-2"></i>
-                            {{ __('Create New Permission') }}</a>
+                            {{ __('message.Create New Permission') }}</a>
                     @endcan
                 </div>
             </div>
@@ -28,8 +28,8 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th cope="col">ID</th>
-                                <th cope="col">Details</th>
-                                <th width="180px" class=" align-content-center align-items-center">{{ __('Action') }}</th>
+                                <th cope="col">{{ __('message.Details') }}</th>
+                                <th width="240px" class=" align-content-center align-items-center">{{ __('Action') }}</th>
                             </tr>
                             @forelse ($data as $key => $permission)
                                 <tr>
@@ -49,14 +49,15 @@
                                             @can('product-edit')
                                                 <a class="btn btn-primary btn-sm px-3"
                                                     href="{{ route('permissions.edit', $permission->id) }}"><i
-                                                        class="fa-solid fa-pen-to-square me-2"></i> Edit</a>
+                                                        class="fa-solid fa-pen-to-square me-2"></i>
+                                                    {{ __('message.Edit') }}</a>
                                             @endcan
 
                                             @can('permission-delete')
                                                 <div class="">
                                                     <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#deletePermission{{ $permission->id }}"><i
-                                                            class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
+                                                            class="fa-solid fa-trash me-2"></i>{{ __('message.Delete') }}</button>
                                                     </a>
                                                 </div>
                                             @endcan
@@ -68,7 +69,7 @@
                                 <tr>
                                     <td colspan="4" class="text-center align-middle">
                                         <h3 class="p-3 fst-italic">
-                                            {{ __('No reservations found!') }}
+                                            {{ __('message.No reservations found!') }}
                                         </h3>
                                     </td>
                                 </tr>

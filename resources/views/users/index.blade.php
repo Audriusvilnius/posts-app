@@ -5,10 +5,10 @@
         <div class="justify-content-center">
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
-                    <h2>{{ __('Users') }}</h2>
+                    <h2>{{ __('message.Users') }}</h2>
                     <a class="btn btn-success btn-sm mb-2 px-4" href="{{ route('users.create') }}"><i
                             class="fa fa-plus me-2"></i>
-                        {{ __('Create New User') }}</a>
+                        {{ __('message.Create New User') }}</a>
                 </div>
             </div>
             @session('success')
@@ -23,10 +23,11 @@
                             <table class="table table-bordered table-sm table-hover">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Email') }}</th>
-                                    <th scope="col">{{ __('Roles') }}</th>
-                                    <th width="240px" class=" align-content-center align-items-center">{{ __('Action') }}
+                                    <th scope="col">{{ __('message.Name') }}</th>
+                                    <th scope="col">{{ __('message.Email') }}</th>
+                                    <th scope="col">{{ __('message.Role') }}</th>
+                                    <th width="240px" class=" align-content-center align-items-center">
+                                        {{ __('message.Action') }}
                                     </th>
                                 </tr>
                                 @forelse ($data as $key => $user)
@@ -48,11 +49,11 @@
                                                         class="fa-solid fa-list"></i> {{__('Show')}}</a> --}}
                                                 <a class="btn btn-primary btn-sm px-3"
                                                     href="{{ route('users.edit', $user->id) }}"><i
-                                                        class="fa-solid fa-pen-to-square me-2"></i>{{ __('Edit') }}</a>
+                                                        class="fa-solid fa-pen-to-square me-2"></i>{{ __('message.Edit') }}</a>
                                                 <div class="">
                                                     <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#deleteUser{{ $user->id }}"><i
-                                                            class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
+                                                            class="fa-solid fa-trash me-2"></i>{{ __('message.Delete') }}</button>
                                                     </a>
                                                 </div>
                                             </div>
@@ -63,7 +64,7 @@
                                     <tr>
                                         <td colspan="4" class="text-center align-middle">
                                             <h3 class="p-3 fst-italic">
-                                                {{ __('No data found!') }}
+                                                {{ __('message.No data found!') }}
                                             </h3>
                                         </td>
                                     </tr>

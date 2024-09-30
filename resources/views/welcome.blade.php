@@ -23,24 +23,36 @@
     <header id="header" class="alt">
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
-                <div class="float-start ms-5">
+                {{-- <div class="float-start ms-5">
                     <nav class="nav nav-masthead justify-content-center float-md-end ">
-                        {{-- <form id="langform" action="{{ route('user.lang') }}" method="get" class="d-flex align-items-center"> --}}
+                        <form id="langform" action="{{ route('user.lang') }}" method="get" class="d-flex align-items-center">
                         <select class="form-select" name="lang">
                             <option disabled>{{ __('Language') }}</option>
                             <option value="en" @if (Session::get('locale', 'en') == 'en') selected @endif> English</option>
                             <option value="fr" @if (session('locale') == 'lt') selected @endif> Lithuania
                             </option>
                         </select>
-                        {{-- </form> --}}
+                        </form>
+                    </nav>
+                </div> --}}
+                <div class="float-start ms-5">
+                    <nav class="nav nav-masthead justify-content-center float-md-end ">
+                        <select class="form-select changeLang" name="lang">
+                            <option disabled>{{ __('Language') }}</option>
+                            <option value="en"{{ session()->get('language') == 'en' ? 'selected' : '' }}>English
+                            </option>
+                            <option value="lt"{{ session()->get('language') == 'lt' ? 'selected' : '' }}>Lithuania
+                            </option>
+                        </select>
                     </nav>
                 </div>
+                {{-- {{ app()->getLocale() }} --}}
                 @auth
                     @if (Route::has('logout'))
                         <a class="btn btn-outline-warning px-4 py-2 text-uppercase border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Log out') }}
+                            {{ __('message.Log out') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -48,17 +60,17 @@
                     @endif
                     <a href="{{ url('/home') }}"
                         class="btn btn-outline-light py-2 ms-5 text-uppercase float-start text-decoration-none border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                        {{ __('Dashboard') }}
+                        {{ __('message.Dashboard') }}
                     </a>
                 @else
                     <button type="button" class="btn btn-warning px-4 " data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
-                        {{ __('Log in') }}
+                        {{ __('message.Login') }}
                     </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="btn btn-outline-light py-2 ms-2 px-4 text-uppercase text-decoration-none border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                            {{ __('Register') }}
+                            {{ __('message.Register') }}
                         </a>
                     @endif
                 @endauth
@@ -73,12 +85,12 @@
   -->
     <section id="banner" data-video="images/banner" style="background-image: url({{ asset('images/banner.jpg') }})">
         < <div class="inner">
-            <h1>{{ __('Transitive') }}</h1>
-            <p>{{ __('A full responsive, business-oriented HTML5/CSS3 template') }}<br>
-                {{ __('built by') }} <a href="https://templated.co/">{{ __('Templated') }}</a>
-                {{ __('and released under the') }} <a
-                    href="https://templated.co/license">{{ __('Creative Commons') }}</a>.</p>
-            <a href="#one" class="button special scrolly">{{ __('Get Started') }}</a>
+            <h1>{{ __('message.Transitive') }}</h1>
+            <p>{{ __('message.A full responsive, business-oriented HTML5/CSS3 template') }}<br>
+                {{ __('message.built by') }} <a href="https://templated.co/">{{ __('Templated') }}</a>
+                {{ __('message.and released under the') }} <a
+                    href="https://templated.co/license">{{ __('message.Creative Commons') }}</a>.</p>
+            <a href="#one" class="button special scrolly">{{ __('message.Get Started') }}</a>
             </div>
     </section><!-- One -->
     <section id="one" class="wrapper style2">
@@ -90,47 +102,49 @@
                     </div>
                     <div class="content">
                         <header class="align-center py-5">
-                            <h2>{{ __('List of conferences') }}</h2>
-                            <p>{{ __('The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
+                            <h2>{{ __('message.List of conferences') }}</h2>
+                            <p>{{ __('message.The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
                             </p>
                         </header>
                         @forelse ($products as $product)
                             @if ($product->booked_from_date === $product->booked_to_date)
                                 <h5 class=" fst-italic">
-                                    {{ $product->booked_from_date }} from
-                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }} to
+                                    {{ $product->booked_from_date }}
+                                    {{ __('message.from') }}
+                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                    {{ __('message.to') }}
                                     {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
                                 </h5>
                                 <h6 class=" fst-italic text-muted">
-                                    {{ __('The duration of the event approximately') }}
+                                    {{ __('message.The duration of the event approximately') }}
                                     {{ $product->deference }} min.
                                 </h6>
                                 <h3> {{ $product->name }}</h3>
                                 <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">{{ __('Conference lecturer') }}:
+                                <h5 class="text-muted fst-italic">{{ __('message.Conference lecturer') }}:
                                     {{ $product->user->name }}</h5>
                                 <hr>
                             @else
                                 <h5 class=" fst-italic">
-                                    {{ $product->booked_from_date }} from
+                                    {{ $product->booked_from_date }} {{ __('message.from') }}
                                     {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                    {{ __('until') }}
-                                    {{ $product->booked_to_date }} to
+                                    {{ __('message.until') }}
+                                    {{ $product->booked_to_date }} {{ __('message.to') }}
                                     {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
                                 </h5>
                                 <h6 class=" fst-italic text-muted">
-                                    {{ __('The duration of the event aproximately') }}
+                                    {{ __('message.The duration of the event approximately') }}
                                     {{ $product->deference }} min.
                                 </h6>
                                 <h3> {{ $product->name }}</h3>
                                 <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">""{{ __('Conference lecturer') }}:
+                                <h5 class="text-muted fst-italic">{{ __('message.Conference lecturer') }}:
                                     {{ $product->user->name }}</h5>
                                 <hr>
                             @endif
                         @empty
                             <div class=" justify-content-center d-flex">
-                                <h3>{{ __('No conferences found!') }}</h3>
+                                <h3>{{ __('message.No conferences found!') }}</h3>
                             </div>
                         @endforelse
                     </div>
@@ -243,35 +257,37 @@
             <section>
                 <div class="box">
                     <div class="content">
-                        <h2 class="align-center">{{ __('Get in Touch') }}</h2>
+                        <h2 class="align-center">{{ __('message.Get in Touch') }}</h2>
                         <hr>
                         <form action="#" method="post">
                             <div class="field half first">
-                                <label for="name">{{ __('Name') }}</label>
+                                <label for="name">{{ __('message.Name') }}</label>
                                 <input name="name" id="name" type="text" placeholder="Name">
                             </div>
                             <div class="field half">
-                                <label for="email">{{ __('Email') }}</label>
-                                <input name="email" id="email" type="email" placeholder="Email">
+                                <label for="emails">{{ __('message.Email') }}</label>
+                                <input name="emails" id="emails" type="email" placeholder="Email">
                             </div>
                             <div class="field">
-                                <label for="dept">{{ __('Department') }}</label>
+                                <label for="dept">{{ __('message.Department') }}</label>
                                 <div class="select-wrapper">
                                     <select name="dept" id="dept">
-                                        <option value="">- {{ __('Category') }} -</option>
-                                        <option value="1">{{ __('Manufacturing') }}</option>
-                                        <option value="1">{{ __('Shipping') }}</option>
-                                        <option value="1">{{ __('Administration') }}</option>
-                                        <option value="1">{{ __('Human Resources') }}</option>
+                                        <option value="">- {{ __('message.Category') }} -</option>
+                                        <option value="1">{{ __('message.Manufacturing') }}</option>
+                                        <option value="1">{{ __('message.Shipping') }}</option>
+                                        <option value="1">{{ __('message.Administration') }}</option>
+                                        <option value="1">{{ __('message.Human Resources') }}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="message">{{ __('Message') }}</label>
+                                <label for="message">{{ __('message.Messages') }}</label>
                                 <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
                             </div>
                             <ul class="actions align-center">
-                                <li><input value="Send Message" class="button special" type="submit"></li>
+                                <li><input value="{{ __('message.Send Message') }}" class="button special"
+                                        type="submit">
+                                </li>
                             </ul>
                         </form>
                     </div>
@@ -283,7 +299,13 @@
         Powered by: <a href="https://templated.co/">Templated.co</a>,
         <a href="http://www.ivko.org" target="_balnk">Audrius Ivko PIT-21-I-NT </a>
     </div>
+    <script type="text/javascript">
+        var url = "{{ route('langChange') }}";
+        $(".changeLang").change(function() {
+            window.location.href = url + "?lang=" + $(this).val();
+        });
+    </script>
+
 </body>
 
 </html>
-</body>

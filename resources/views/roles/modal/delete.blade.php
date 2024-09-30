@@ -4,11 +4,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="deleteRoles{{ $role->id }}">
-                    {{ __('Delete reole') }}</h1>
+                    {{ __('message.Delete role') }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                {{ __('Delete role') }}
+                {{ __('message.Delete role') }}
                 <b>
                     <i>
                         <code>
@@ -20,12 +20,12 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn rounded-1 btn-sm btn-secondary px-4"
-                    data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                    data-bs-dismiss="modal">{{ __('message.Cancel') }}</button>
                 <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                        Delete</button>
+                        {{ __('message.Delete') }}</button>
                 </form>
             </div>
         </div>

@@ -4,11 +4,11 @@
         <div class="justify-content-center">
             <div class="row">
                 <div class="col-lg-12 justify-content-between d-flex align-content-center align-items-center py-3">
-                    <h2>{{ __('Reservations') }}</h2>
+                    <h2>{{ __('message.Reservations') }}</h2>
                     @can('product-create')
                         <a class="btn btn-success btn-sm mb-2 px-4" href="{{ route('products.create') }}"><i
                                 class="fa fa-plus me-2"></i>
-                            {{ __('Create New Reservation') }}</a>
+                            {{ __('message.Create New Reservation') }}</a>
                     @endcan
                 </div>
             </div>
@@ -24,9 +24,10 @@
                             <table class="table table-bordered table-sm table-hover">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th width="240px">{{ __('Date') }}</th>
-                                    <th scope="col">{{ __('Title / Body') }}</th>
-                                    <th width="240px" class=" align-content-center align-items-center">{{ __('Action') }}
+                                    <th width="240px">{{ __('message.Date') }}</th>
+                                    <th scope="col">{{ __('message.Title / Body') }}</th>
+                                    <th width="280px" class=" align-content-center align-items-center">
+                                        {{ __('message.Action') }}
                                     </th>
                                 </tr>
                                 @forelse ($products as $product)
@@ -43,12 +44,12 @@
                                                     -
                                                     {{ \Carbon\Carbon::parse($product->booked_to)->format('Y-m-d H:i') }}
                                                 @else
-                                                    {{ __('Not booked') }}
+                                                    {{ __('message.Not booked') }}
                                                 @endif
                                             </small>
                                             <small class="text-muted fst-italic">
                                                 @if ($product->user_id)
-                                                    {{ __('by') }} {{ $product->user->name }}
+                                                    {{ __('message.by') }} {{ $product->user->name }}
                                                 @endif
                                             </small>
                                         </td>
@@ -64,17 +65,17 @@
                                             <div class="justify-content-center align-content-end d-flex gap-2">
                                                 <a class="btn btn-info btn-sm"
                                                     href="{{ route('products.show', $product->id) }}"><i
-                                                        class="fa-solid fa-list me-2"></i>{{ __('Show') }}</a>
+                                                        class="fa-solid fa-list me-2"></i>{{ __('message.Show') }}</a>
                                                 @can('product-edit')
                                                     <a class="btn btn-primary btn-sm px-2"
                                                         href="{{ route('products.edit', $product->id) }}"><i
-                                                            class="fa-solid fa-pen-to-square me-2"></i>{{ __('Edit') }}</a>
+                                                            class="fa-solid fa-pen-to-square me-2"></i>{{ __('message.Edit') }}</a>
                                                 @endcan
                                                 @can('product-delete')
                                                     <div class="">
                                                         <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                             data-bs-target="#deleteProduct{{ $product->id }}"><i
-                                                                class="fa-solid fa-trash me-2"></i>{{ __('Delete') }}</button>
+                                                                class="fa-solid fa-trash me-2"></i>{{ __('message.Delete') }}</button>
                                                         </a>
                                                     </div>
                                                 @endcan

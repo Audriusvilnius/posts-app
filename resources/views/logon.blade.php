@@ -10,7 +10,7 @@
                     @csrf
                     <div class="row mb-3">
                         <label for="email"
-                            class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            class="col-md-4 col-form-label text-md-end">{{ __('message.Email Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email"
@@ -26,7 +26,8 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <label for="password"
+                            class="col-md-4 col-form-label text-md-end">{{ __('message.Password') }}</label>
 
                         <div class="col-md-6">
                             <input id="password" type="password"
@@ -47,21 +48,21 @@
                                     {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
+                                    {{ __('message.Remember Me') }}
                                 </label>
                             </div>
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('message.Forgot Your Password?') }}
                                 </a>
                             @endif
                         </div>
                         <div class="col-md-8 offset-md-3 justify-content-end d-flex">
                             <button type="submit" class="btn btn-primary text-white">
-                                {{ __('Log in') }}
+                                {{ __('message.Login') }}
                             </button>
                             <button type="button" class="btn btn-secondary text-white px-3 ms-3"
-                                data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                data-bs-dismiss="modal">{{ __('message.Close') }}</button>
                         </div>
                     </div>
                 </form>
