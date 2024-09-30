@@ -26,7 +26,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand ps-3 pe-3" href="{{ url('/') }}">
                     VVK SD 1/2
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -67,7 +67,7 @@
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ __('Admin') }}
                                     </a>
-                                    <div class="dropdown-menu   " aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         @can('user-list')
                                             <a class="nav-link ms-1 me-1"
                                                 href="{{ route('users.index') }}">{{ __('Manage Users') }}</a>
@@ -90,8 +90,8 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <a class="nav-link ms-1 me-1" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

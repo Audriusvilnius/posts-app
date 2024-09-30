@@ -37,6 +37,15 @@
                     </nav>
                 </div>
                 @auth
+                    @if (Route::has('logout'))
+                        <a class="btn btn-warning px-4" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    @endif
                     <a href="{{ url('/home') }}" class="btn btn-outline-light">
                         {{ __('Dashboard') }}
                     </a>
@@ -47,7 +56,7 @@
                     </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="rounded-md px-3 py-2 text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            class="ms-3 rounded-md px-3 py-2 text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             {{ __('Register') }}
                         </a>
                     @endif
@@ -67,7 +76,7 @@
             <p>{{ __('A full responsive, business-oriented HTML5/CSS3 template') }}<br>
                 {{ __('built by') }} <a href="https://templated.co/">{{ __('Templated') }}</a>
                 {{ __('and released under the') }} <a
-                    href="https://templated.co/license">{{ _('Creative Commons') }}</a>.</p>
+                    href="https://templated.co/license">{{ __('Creative Commons') }}</a>.</p>
             <a href="#one" class="button special scrolly">{{ __('Get Started') }}</a>
             </div>
     </section><!-- One -->
