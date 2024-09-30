@@ -38,15 +38,15 @@
                 </div>
                 @auth
                     @if (Route::has('logout'))
-                        <a class="btn btn-warning px-4" href="{{ route('logout') }}"
+                        <a class="btn btn-outline-warning px-4 py-2 text-uppercase" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Log out') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     @endif
-                    <a href="{{ url('/home') }}" class="btn btn-outline-light">
+                    <a href="{{ url('/home') }}" class="btn btn-outline-light py-2 ms-2 text-uppercase">
                         {{ __('Dashboard') }}
                     </a>
                 @else
@@ -56,7 +56,7 @@
                     </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="ms-3 rounded-md px-3 py-2 text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            class="ms-3 rounded-md px-3 py-2 text-uppercase text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             {{ __('Register') }}
                         </a>
                     @endif

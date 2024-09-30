@@ -58,10 +58,10 @@
                         </div>
                         <div class="col-md-8 offset-md-3 justify-content-end d-flex">
                             <button type="submit" class="btn btn-primary text-white">
-                                {{ __('Login') }}
+                                {{ __('Log in') }}
                             </button>
                             <button type="button" class="btn btn-secondary text-white px-3 ms-3"
-                                data-bs-dismiss="modal">Close</button>
+                                data-bs-dismiss="modal">{{ __('Close') }}</button>
                         </div>
                     </div>
                 </form>
