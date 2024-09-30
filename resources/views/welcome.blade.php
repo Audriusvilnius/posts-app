@@ -23,18 +23,6 @@
     <header id="header" class="alt">
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
-                {{-- <div class="float-start ms-5">
-                    <nav class="nav nav-masthead justify-content-center float-md-end ">
-                        <form id="langform" action="{{ route('user.lang') }}" method="get" class="d-flex align-items-center">
-                        <select class="form-select" name="lang">
-                            <option disabled>{{ __('Language') }}</option>
-                            <option value="en" @if (Session::get('locale', 'en') == 'en') selected @endif> English</option>
-                            <option value="fr" @if (session('locale') == 'lt') selected @endif> Lithuania
-                            </option>
-                        </select>
-                        </form>
-                    </nav>
-                </div> --}}
                 <div class="float-start ms-5">
                     <nav class="nav nav-masthead justify-content-center float-md-end ">
                         <select class="form-select changeLang" name="lang">
@@ -42,6 +30,8 @@
                             <option value="en"{{ session()->get('language') == 'en' ? 'selected' : '' }}>English
                             </option>
                             <option value="lt"{{ session()->get('language') == 'lt' ? 'selected' : '' }}>Lithuania
+                            </option>
+                            <option value="ru"{{ session()->get('language') == 'ru' ? 'selected' : '' }}>Russian
                             </option>
                         </select>
                     </nav>
@@ -157,32 +147,32 @@
             <div id="flexgrid">
                 <div>
                     <header>
-                        <h3>Tempus Feugiat</h3>
+                        <h3>{{ __('message.Tempus Feugiat') }}</h3>
                     </header>
                     <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet,
                         lectus arcu</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
+                        <li><a href="#" class="button alt">{{ __('message.Learn More') }}</a></li>
                     </ul>
                 </div>
                 <div>
                     <header>
-                        <h3>Aliquam Nulla</h3>
+                        <h3>{{ __('message.Aliquam Nulla') }}</h3>
                     </header>
                     <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh
                         sed </p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
+                        <li><a href="#" class="button alt">{{ __('message.Learn More') }}</a></li>
                     </ul>
                 </div>
                 <div>
                     <header>
-                        <h3>Sed Magna</h3>
+                        <h3>{{ __('message.Sed Magna') }}</h3>
                     </header>
                     <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper
                         vehicula.</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
+                        <li><a href="#" class="button alt">{{ __('message.Learn More') }}</a></li>
                     </ul>
                 </div>
             </div>

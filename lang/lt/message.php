@@ -100,4 +100,9 @@ return [
     "Delete role" => "Ištrinti vaidmenį",
     "Create New Use" => "Sukurti naują naudotoją",
     "Users" => "Naudotojai",
+    "Tempus Feugiat" => "Laikas bėga",
+    "Learn More" => "Sužinokite daugiau",
+    "Aliquam Nulla" => "Nulis",
+    "Sed Magna" => "Didelis",
+
 ];

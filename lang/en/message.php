@@ -100,5 +100,9 @@ return [
     "Delete role" => "Delete role",
     "Create New Use" => "Create New Use",
     "Users" => "Users",
+    "Tempus Feugiat" => "Tempus Feugiat",
+    "Learn More" => "Learn More",
+    "Aliquam Nulla" => "Aliquam Nulla",
+    "Sed Magna" => "Sed Magna",
 
 ];
