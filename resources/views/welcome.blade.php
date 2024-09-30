@@ -24,10 +24,9 @@
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end me-5">
                 <div class="float-start ms-5">
-                    <h3 class="float-md-start mb-0"><img src="" alt="" srcset=""></h3>
-                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <nav class="nav nav-masthead justify-content-center float-md-end ">
                         {{-- <form id="langform" action="{{ route('user.lang') }}" method="get" class="d-flex align-items-center"> --}}
-                        <select class="form-select" name="lang" id="lang" onchange="this.form.submit()">
+                        <select class="form-select" name="lang">
                             <option disabled>{{ __('Language') }}</option>
                             <option value="en" @if (Session::get('locale', 'en') == 'en') selected @endif> English</option>
                             <option value="fr" @if (session('locale') == 'lt') selected @endif> Lithuania
@@ -38,7 +37,8 @@
                 </div>
                 @auth
                     @if (Route::has('logout'))
-                        <a class="btn btn-outline-warning px-4 py-2 text-uppercase" href="{{ route('logout') }}"
+                        <a class="btn btn-outline-warning px-4 py-2 text-uppercase border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                            href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Log out') }}
                         </a>
@@ -46,17 +46,18 @@
                             @csrf
                         </form>
                     @endif
-                    <a href="{{ url('/home') }}" class="btn btn-outline-light py-2 ms-2 text-uppercase">
+                    <a href="{{ url('/home') }}"
+                        class="btn btn-outline-light py-2 ms-5 text-uppercase float-start text-decoration-none border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                         {{ __('Dashboard') }}
                     </a>
                 @else
-                    <button type="button" class="btn btn-warning px-4" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning px-4 " data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         {{ __('Log in') }}
                     </button>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="ms-3 rounded-md px-3 py-2 text-uppercase text-decoration-none border rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            class="btn btn-outline-light py-2 ms-2 px-4 text-uppercase text-decoration-none border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                             {{ __('Register') }}
                         </a>
                     @endif
