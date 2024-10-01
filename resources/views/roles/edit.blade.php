@@ -40,16 +40,20 @@
                                     <div class="form-group">
                                         <strong>{{ __('message.Permission') }}:</strong>
                                         <br />
-                                        @foreach ($permission as $value)
-                                            <label><input type="checkbox" name="permission[{{ $value->id }}]"
-                                                    value="{{ $value->id }}" class="name"
-                                                    {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }}>
+                                        @foreach ($permission as $i => $value)
+                                            <input type="checkbox" name="permission[{{ $value->id }}]"
+                                                value="{{ $value->id }}" class="form-check-input"
+                                                id="flexCheckDefault{{ $i }}"
+                                                {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="flexCheckDefault{{ $i }}">
                                                 {{ $value->name }}</label>
                                             <br />
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 text-center px-3 justify-content-end d-flex py-3">
+                                <div
+                                    class="col-xs-12
+                                                col-sm-12 col-md-12 text-center px-3 justify-content-end d-flex py-3">
                                     <button type="submit" class="btn btn-primary btn-sm mb-3 mt-2"><i
                                             class="fa-solid fa-floppy-disk me-2"></i>
                                         {{ __('message.Submit') }}</button>

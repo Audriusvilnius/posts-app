@@ -11,7 +11,10 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/main.css', 'resources/css/font-awesome.min.css'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/main.css', 'resources/css/font-awesome.min.css']) --}}
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+
+    {{-- <link rel="stylesheet" href="{{ mix('css/main.css') }}" /> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -53,7 +56,7 @@
                         {{ __('message.Dashboard') }}
                     </a>
                 @else
-                    <button type="button" class="btn btn-warning px-4 " data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning px-4 text-uppercase" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         {{ __('message.Login') }}
                     </button>
@@ -295,7 +298,7 @@
             window.location.href = url + "?lang=" + $(this).val();
         });
     </script>
-
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>

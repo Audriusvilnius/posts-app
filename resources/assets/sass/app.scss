@@ -1,0 +1,24 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import '../css/main.css';
+@import 'font-awesome';
+
+
+#navbar .nav-item:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 5px;
+
+}
