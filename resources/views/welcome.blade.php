@@ -8,8 +8,18 @@
     <title>PIT-21-I-NT SD1/2</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> --}}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/main.css', 'resources/css/font-awesome.min.css']) --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
@@ -98,12 +108,15 @@
                     </div>
                     <div class="content">
                         <header class="align-center py-5">
-                            <h2>{{ __('message.List of conferences') }}</h2>
-                            <p>{{ __('message.The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
+                            <h2 class="py-3">{{ __('message.List of conferences') }}</h2>
+                            <p class="py-3">
+                                {{ __('message.The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
                             </p>
+                            <hr class="py-4">
                         </header>
                         @forelse ($products as $product)
                             @if ($product->booked_from_date === $product->booked_to_date)
+                                <h3> {{ $product->name }}</h3>
                                 <h5 class=" fst-italic">
                                     {{ $product->booked_from_date }}
                                     {{ __('message.from') }}
@@ -115,12 +128,19 @@
                                     {{ __('message.The duration of the event approximately') }}
                                     {{ $product->deference }} min.
                                 </h6>
-                                <h3> {{ $product->name }}</h3>
                                 <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">{{ __('message.Conference lecturer') }}:
+                                <h5 class="text-muted fst-italic justify-content-end d-flex">
+                                    {{ __('message.Conference lecturer') }}:
                                     {{ $product->user->name }}</h5>
-                                <hr>
+                                <form action="" class=" justify-content-center d-flex">
+                                    @csrf
+                                    <input type="hidden" class="btn-check bg-light"
+                                        name="btn-check-2-outlined{{ $product->id }}">
+                                    <button class="btn btn-success" type="submit">Check in</button>
+                                </form>
+                                <hr class="py-4">
                             @else
+                                <h3 class="text-center"> {{ $product->name }}</h3>
                                 <h5 class=" fst-italic">
                                     {{ $product->booked_from_date }} {{ __('message.from') }}
                                     {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
@@ -132,11 +152,17 @@
                                     {{ __('message.The duration of the event approximately') }}
                                     {{ $product->deference }} min.
                                 </h6>
-                                <h3> {{ $product->name }}</h3>
                                 <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">{{ __('message.Conference lecturer') }}:
+                                <h5 class="text-muted fst-italic justify-content-end d-flex">
+                                    {{ __('message.Conference lecturer') }}:
                                     {{ $product->user->name }}</h5>
-                                <hr>
+                                <form action="" class=" justify-content-center d-flex">
+                                    @csrf
+                                    <input type="hidden" class="btn-check bg-light"
+                                        name="btn-check-2-outlined{{ $product->id }}">
+                                    <button class="btn btn-success" type="submit">Check in</button>
+                                </form>
+                                <hr class="py-4">
                             @endif
                         @empty
                             <div class=" justify-content-center d-flex">
@@ -211,7 +237,8 @@
                 <div>
                     <div class="box">
                         <div class="image fit">
-                            <img src="{{ asset('images/pic03.jpg') }}" alt="" width="3472" height="1236">
+                            <img src="{{ asset('images/pic03.jpg') }}" alt="" width="3472"
+                                height="1236">
                         </div>
                         <div class="content">
                             @php
