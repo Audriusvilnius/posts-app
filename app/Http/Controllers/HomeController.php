@@ -37,15 +37,19 @@ class HomeController extends Controller
             $product->booked_from_hours = date('H:i', strtotime($product->booked_from));
             $product->booked_to_hours = date('H:i', strtotime($product->booked_to));
             $product->user_checked = DB::table('registration')->where('event_id', $product->id)->count();
-            $product->checked = DB::table('registration')->where('user_id', Auth::id())->where('event_id', $product->id) ?? null;
+            $product->checked = DB::table('registration')->where('user_id', Auth::id())->where('event_id', $product->id)->get() ?? null;
             $product->deference = Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to));
 
             return $product;
         });
 
-        $my_Checks = DB::table('registration')->where('user_id', Auth::id())->get();
+        $my_Checks = $products->filter(function ($product) {
+            if ($product->checked->isNotEmpty()) {
+                return $product;
+            }
+        });
 
-        dump($my_Checks);
+        // dump($my_Checks);
 
         return view('home', [
             'products' => $products,
