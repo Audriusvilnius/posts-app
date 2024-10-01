@@ -14,6 +14,7 @@
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/main.css', 'resources/css/font-awesome.min.css']) --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
+
     {{-- <link rel="stylesheet" href="{{ mix('css/main.css') }}" /> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -77,14 +78,16 @@
    formats to work correctly.
   -->
     <section id="banner" data-video="images/banner" style="background-image: url({{ asset('images/banner.jpg') }})">
-        < <div class="inner">
+        <div class="inner">
             <h1>{{ __('message.Transitive') }}</h1>
             <p>{{ __('message.A full responsive, business-oriented HTML5/CSS3 template') }}<br>
-                {{ __('message.built by') }} <a href="https://templated.co/">{{ __('Templated') }}</a>
-                {{ __('message.and released under the') }} <a
-                    href="https://templated.co/license">{{ __('message.Creative Commons') }}</a>.</p>
+                {{ __('message.built by') }}
+                <a href="https://templated.co/">{{ __('Templated') }}</a>
+                {{ __('message.and released under the') }}
+                <a href="https://templated.co/license">{{ __('message.Creative Commons') }}.</a>
+            </p>
             <a href="#one" class="button special scrolly">{{ __('message.Get Started') }}</a>
-            </div>
+        </div>
     </section><!-- One -->
     <section id="one" class="wrapper style2">
         <div class="inner">
