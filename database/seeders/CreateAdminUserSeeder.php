@@ -15,6 +15,8 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run(): void
     {
+
+
         $user = User::create([
             'name' => 'Audrius Ivko',
             'email' => 'audrius@gmail.com',
@@ -50,5 +52,7 @@ class CreateAdminUserSeeder extends Seeder
         $permissions = Permission::where('name', 'LIKE', 'product-%')->pluck('id', 'id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([2]);
+
+        $role = Role::create(['name' => 'Guest']);
     }
 }

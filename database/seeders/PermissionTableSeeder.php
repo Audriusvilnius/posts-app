@@ -31,6 +31,7 @@ class PermissionTableSeeder extends Seeder
             'permission-edit',
             'permission-delete',
             'admin-tools',
+            'product-event'
         ];
 
         foreach ($permissions as $permission) {

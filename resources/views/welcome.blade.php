@@ -114,56 +114,89 @@
                             </p>
                             <hr class="py-4">
                         </header>
+
                         @forelse ($products as $product)
-                            @if ($product->booked_from_date === $product->booked_to_date)
-                                <h3> {{ $product->name }}</h3>
-                                <h5 class=" fst-italic">
-                                    {{ $product->booked_from_date }}
-                                    {{ __('message.from') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                    {{ __('message.to') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                                </h5>
-                                <h6 class=" fst-italic text-muted">
-                                    {{ __('message.The duration of the event approximately') }}
-                                    {{ $product->deference }} min.
-                                </h6>
-                                <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic justify-content-end d-flex">
-                                    {{ __('message.Conference lecturer') }}:
-                                    {{ $product->user->name }}</h5>
-                                <form action="" class=" justify-content-center d-flex">
-                                    @csrf
-                                    <input type="hidden" class="btn-check bg-light"
-                                        name="btn-check-2-outlined{{ $product->id }}">
-                                    <button class="btn btn-success" type="submit">Check in</button>
-                                </form>
-                                <hr class="py-4">
-                            @else
-                                <h3 class="text-center"> {{ $product->name }}</h3>
-                                <h5 class=" fst-italic">
-                                    {{ $product->booked_from_date }} {{ __('message.from') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                    {{ __('message.until') }}
-                                    {{ $product->booked_to_date }} {{ __('message.to') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                                </h5>
-                                <h6 class=" fst-italic text-muted">
-                                    {{ __('message.The duration of the event approximately') }}
-                                    {{ $product->deference }} min.
-                                </h6>
-                                <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic justify-content-end d-flex">
-                                    {{ __('message.Conference lecturer') }}:
-                                    {{ $product->user->name }}</h5>
-                                <form action="" class=" justify-content-center d-flex">
-                                    @csrf
-                                    <input type="hidden" class="btn-check bg-light"
-                                        name="btn-check-2-outlined{{ $product->id }}">
-                                    <button class="btn btn-success" type="submit">Check in</button>
-                                </form>
-                                <hr class="py-4">
-                            @endif
+                            <div id={{ $product->id }}>
+                                @if ($product->booked_from_date === $product->booked_to_date)
+                                    <h3 class="text-center py-2"> {{ $product->name }}</h3>
+                                    <h5 class=" fst-italic">
+                                        {{ $product->booked_from_date }}
+                                        {{ __('message.from') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                        {{ __('message.to') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                    </h5>
+                                    <h6 class=" fst-italic text-muted">
+                                        {{ __('message.The duration of the event approximately') }}
+                                        {{ $product->deference }} min.
+                                    </h6>
+                                    <p> {!! nl2br($product->detail) !!}</p>
+                                    <p class="text-muted fst-italic">
+                                        {{ __('message.All registered participants') }}:
+                                        {{ $product->user_checked }}
+                                    </p>
+                                    <h5 class="text-muted fst-italic justify-content-end d-flex">
+                                        {{ __('message.Conference lecturer') }}:
+                                        {{ $product->user->name }}</h5>
+                                    @if (auth()->user())
+                                        <form method="POST" action="{{ route('product-checkin', $product->id) }}"
+                                            class=" justify-content-center d-flex">
+                                            @method('POST')
+                                            @csrf
+                                            @if ($product->checked == 1)
+                                                <button class="button special"
+                                                    type="submit">{{ __('message.Leave') }}</button>
+                                            @else
+                                                <button class="button alt"
+                                                    type="submit">{{ __('message.Check in') }}</button>
+                                            @endif
+                                        </form>
+                                    @else
+                                        <a href="#"
+                                            class="text-center">{{ __('message.Check In Only Register User') }}</a>
+                                    @endif
+                                    <hr class="py-4">
+                                @else
+                                    <h3 class="text-center py-2"> {{ $product->name }}</h3>
+                                    <h5 class=" fst-italic">
+                                        {{ $product->booked_from_date }} {{ __('message.from') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                        {{ __('message.until') }}
+                                        {{ $product->booked_to_date }} {{ __('message.to') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                    </h5>
+                                    <h6 class=" fst-italic text-muted">
+                                        {{ __('message.The duration of the event approximately') }}
+                                        {{ $product->deference }} min.
+                                    </h6>
+                                    <p> {!! nl2br($product->detail) !!}</p>
+                                    <p class="text-muted fst-italic">
+                                        {{ __('message.All registered participants') }}:
+                                        {{ $product->user_checked }}
+                                    </p>
+                                    <h5 class="text-muted fst-italic justify-content-end d-flex">
+                                        {{ __('message.Conference lecturer') }}:
+                                        {{ $product->user->name }}</h5>
+                                    @if (auth()->user())
+                                        <form method="POST" action="{{ route('product-checkin', $product->id) }}"
+                                            class=" justify-content-center d-flex">
+                                            @method('POST')
+                                            @csrf
+                                            @if ($product->checked == 1)
+                                                <button class="button special"
+                                                    type="submit">{{ __('message.Leave') }}</button>
+                                            @else
+                                                <button class="button alt"
+                                                    type="submit">{{ __('message.Check in') }}</button>
+                                            @endif
+                                        </form>
+                                    @else
+                                        <a href="#"
+                                            class="text-center">{{ __('message.Check In Only Register User') }}</a>
+                                    @endif
+                                    <hr class="py-4">
+                                @endif
+                            </div>
                         @empty
                             <div class=" justify-content-center d-flex">
                                 <h3>{{ __('message.No conferences found!') }}</h3>
@@ -232,8 +265,6 @@
                         <p> {{ $faker_header }}</p>
                     </div>
                 </div>
-
-
                 <div>
                     <div class="box">
                         <div class="image fit">

@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::prefix('/welcome')->name('product-')->group(function () {
     Route::get('/', [Product::class, 'welcome'])->name('welcome');
+    Route::post('/{id}', [Product::class, 'checkin'])->name('checkin');
 });
 
 Route::get('langChange', [Lang::class, 'langChange'])->name('langChange');

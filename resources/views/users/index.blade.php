@@ -16,6 +16,16 @@
                     {{ $value }}
                 </div>
             @endsession
+            @session('error')
+                <div class="alert alert-danger" role="alert">
+                    {{ $value }}
+                </div>
+            @endsession
+            @session('warning')
+                <div class="alert alert-warning" role="alert">
+                    {{ $value }}
+                </div>
+            @endsession
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-body">

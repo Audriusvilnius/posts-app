@@ -2194,6 +2194,22 @@ button.special:active,
     background-color: #439aea;
 }
 
+button.confirm,
+.button.confirm {
+    background-color: #17e4a6;
+    color: #ffffff !important;
+}
+
+button.confirm:hover,
+.button.confirm:hover {
+    background-color: #17e4a6;
+}
+
+button.confirm:active,
+.button.confirm:active {
+    background-color: #17e4a6;
+}
+
 /* Form */
 
 form {

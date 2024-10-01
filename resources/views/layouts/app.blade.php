@@ -60,8 +60,11 @@
                             @endif
                         @else
                             @can('product-list')
-                                <li><a class="nav-link"
-                                        href="{{ route('products.index') }}">{{ __('message.Manage Reservations') }}</a></li>
+                                <li>
+                                    <a class="nav-link"
+                                        href="{{ route('products.index') }}">{{ __('message.Manage Reservations') }}
+                                    </a>
+                                </li>
                             @endcan
                             @can('admin-tools')
                                 <li class="nav-item dropdown">

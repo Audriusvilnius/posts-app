@@ -104,5 +104,9 @@ return [
     "Learn More" => "Sužinokite daugiau",
     "Aliquam Nulla" => "Nulis",
     "Sed Magna" => "Didelis",
+    "All registered participants" => "Viso registruota dalyvių",
+    "Leave" => "Atšaukti registraciją",
+    "Check in" => "Registruotis",
+    "Check In Only Register User" => "Registracija tik registruotiems naudotojams",
 
 ];

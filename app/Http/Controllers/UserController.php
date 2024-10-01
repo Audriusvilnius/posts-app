@@ -138,6 +138,19 @@ class UserController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        if (DB::table('registration')->where('user_id', $id)->count() > 0 or DB::table('products')->where('user_id', $id)->count() > 0) {
+            return redirect()->route('users.index')
+                ->with('error', 'You can not delete user with registration');
+        }
+
+        if ($id == auth()->user()->id) {
+            return redirect()->route('users.index')
+                ->with('error', 'You can not delete yourself');
+        }
+        if (User::find($id)->hasRole('admin')) {
+            return redirect()->route('users.index')
+                ->with('error', 'You can not delete admin');
+        }
         User::find($id)->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');

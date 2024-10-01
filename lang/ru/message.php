@@ -104,4 +104,8 @@ return [
     "Learn More" => "Узнать больше",
     "Aliquam Nulla" => "Aliquam Nulla",
     "Sed Magna" => "Sed Magna",
+    "All registered participants" => "Все зарегистрированные участники",
+    "Leave" => "Оставить",
+    "Check in" => "Регистрация",
+    "Check In Only Register User" => "Регистрация только для зарегистрированных пользователей",
 ];
