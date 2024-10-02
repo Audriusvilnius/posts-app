@@ -60,13 +60,22 @@
                             @endif
                         @else
                             @can('product-list')
-                                <li>
-                                    <a class="nav-link"
-                                        href="{{ route('products.index') }}">{{ __('message.Manage Reservations') }}
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle me-1" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('message.Manage') }}
                                     </a>
-                                </li>
-                            @endcan
-                            @can('admin-tools')
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @can('product-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('products.index') }}">{{ __('message.Reservations') }}</a>
+                                        @endcan
+                                        @can('product-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('home') }}">{{ __('message.Booking') }}</a>
+                                        @endcan
+                                    @endcan
+                                    @can('admin-tools')
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle me-1" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

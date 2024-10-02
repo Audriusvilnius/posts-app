@@ -108,5 +108,6 @@ return [
     "Leave" => "Atšaukti registraciją",
     "Check in" => "Registruotis",
     "Check In Only Register User" => "Registracija tik registruotiems naudotojams",
-
+    "Manage" => "Tvarkyti",
+    "Booking" => "Rezervacija",
 ];

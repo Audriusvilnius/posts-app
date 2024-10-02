@@ -108,4 +108,6 @@ return [
     "Leave" => "Leave",
     "Check in" => "Check in",
     "Check In Only Register User" => "Check In Only Register User",
+    "Manage" => "Manage",
+    "Booking" => "Booking",
 ];
