@@ -29,7 +29,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $role = DB::table('model_has_roles')->where('model_id', Auth::user()->id)->get();
         $role_name = DB::table('roles')->where('id', $role[0]->role_id)->first()->name;
         if ($role_name == 'Admin') {
@@ -43,7 +42,6 @@ class HomeController extends Controller
                 ->pluck('user_id')
                 ->toArray();
         }
-
 
         $all_check = DB::table('registration')
             ->join('users', 'registration.user_id', '=', 'users.id')
@@ -63,52 +61,8 @@ class HomeController extends Controller
             return $item;
         });
 
-        // dd($all_check, $show);
-
-
-        // $products = Product::all()->sortByDesc('booked_from');
-        // switch ($role_name) {
-        //     case 'Admin':
-        //         $products->map(function ($product) {
-        //             $product->booked_from_date = date('Y-m-d', strtotime($product->booked_from));
-        //             $product->booked_to_date = date('Y-m-d', strtotime($product->booked_to));
-        //             $product->booked_from_hours = date('H:i', strtotime($product->booked_from));
-        //             $product->booked_to_hours = date('H:i', strtotime($product->booked_to));
-        //             $product->user_checked = DB::table('registration')->where('event_id', $product->id)->count();
-        //             $product->checked = DB::table('registration')->where('event_id', $product->id)->get() ?? null;
-        //             $product->deference = Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to));
-        //             $product->guest = DB::table('registration')->where('event_id', $product->id)->first()->user_id ?? null;
-        //             $product->guest_name = DB::table('users')->where('id', $product->guest)->first()->name ?? null;
-        //             return $product;
-        //         });
-        //         break;
-        //     default:
-        //         $products->map(function ($product) {
-        //             $product->booked_from_date = date('Y-m-d', strtotime($product->booked_from));
-        //             $product->booked_to_date = date('Y-m-d', strtotime($product->booked_to));
-        //             $product->booked_from_hours = date('H:i', strtotime($product->booked_from));
-        //             $product->booked_to_hours = date('H:i', strtotime($product->booked_to));
-        //             $product->user_checked = DB::table('registration')->where('event_id', $product->id)->count();
-        //             $product->checked = DB::table('registration')->where('user_id', Auth::id())->where('event_id', $product->id)->get() ?? null;
-        //             $product->deference = Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to));
-        //             $product->guest_name = DB::table('users')->where('id', Auth::user()->id)->first()->name ?? null;
-        //             return $product;
-        //         });
-        //         break;
-        // }
-        // $my_Checks = $products->filter(function ($product) {
-        //     if ($product->checked->isNotEmpty()) {
-        //         return $product;
-        //     }
-        // });
-
-
-
-        // dump($my_Checks);
-
         return view('home', [
             'products' => $all_check,
-            // 'my_Checks' => $my_Checks
         ]);
     }
 }
