@@ -13,26 +13,45 @@
                             </div>
                         @endif
                         <div class="content">
-                            @forelse ($my_Checks as $product)
+                            @forelse ($products as $product)
                                 <div id={{ $product->id }}>
                                     @if ($product->booked_from_date === $product->booked_to_date)
-                                        <h3 class="py-2"> {{ $product->name }}</h3>
-                                        <h5 class=" fst-italic">
-                                            {{ $product->booked_from_date }}
-                                            {{ __('message.from') }}
-                                            {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                            {{ __('message.to') }}
-                                            {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                                        </h5>
-                                        <span class="d-inline-block text-truncate">
-                                            {{ $product->detail }}</span>
-                                        <p class="text-muted fst-italic">
-                                            {{ __('message.All registered participants') }}:
-                                            {{ $product->user_checked }}
-                                        </p>
-                                        <small class="text-muted fst-italic">
-                                            {{ __('message.Conference lecturer') }}:
-                                            {{ $product->user->name }}</small>
+                                        <strong class="py-2">
+                                            {{ __('message.guest') }}:
+                                        </strong>
+                                        <span class=" fw-lighter fst-italic">
+                                            {{ $product->name }}
+                                        </span>
+                                        <div>
+                                            <strong class="py-2">{{ __('message.Title') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->title }}
+                                                </span>
+                                            </strong>
+                                        </div>
+                                        <strong class="py-2">{{ __('message.Date') }}:
+                                            <span class=" fw-lighter fst-italic">
+                                                {{ $product->booked_from_date }}
+                                                {{ __('message.from') }}
+                                                {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                                {{ __('message.to') }}
+                                                {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                            </span>
+                                        </strong>
+                                        <div class="col-12 text-truncate">
+                                            <strong class="py-2"> {{ __('message.Conference lecturer') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->owner }}
+                                                </span>
+                                            </strong>
+                                        </div>
+                                        <div class="col-12 text-truncate">
+                                            <strong class="py-2"> {{ __('message.All registered participants') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->user_checked }}
+                                                </span>
+                                            </strong>
+                                        </div>
                                         <form method="POST" action="{{ route('product-checkin', $product->id) }}"
                                             class=" justify-content-end d-flex">
                                             @method('POST')
@@ -41,25 +60,50 @@
                                                 type="submit">{{ __('message.Leave') }}</button>
                                         </form>
                                     @else
-                                        <h3 class="py-2"> {{ $product->name }}</h3>
-                                        <h5 class=" fst-italic">
-                                            {{ $product->booked_from_date }} {{ __('message.from') }}
-                                            {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                            {{ __('message.until') }}
-                                            {{ $product->booked_to_date }} {{ __('message.to') }}
-                                            {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                                        </h5>
+                                        <strong class="py-2">
+                                            {{ __('message.guest') }}:
+                                        </strong>
+                                        <span class=" fw-lighter fst-italic">
+                                            {{ $product->name }}
+                                        </span>
+                                        <div>
+                                            <strong class="py-2">{{ __('message.Title') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->title }}
+                                                </span>
+                                            </strong>
+                                        </div>
+                                        <strong class="py-2">{{ __('message.Date') }}:
+                                            <span class=" fw-lighter fst-italic">
+                                                {{ $product->booked_from_date }} {{ __('message.from') }}
+                                                {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                                {{ __('message.until') }}
+                                                {{ $product->booked_to_date }} {{ __('message.to') }}
+                                                {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                            </span>
+                                        </strong>
                                         <div class="col-12 text-truncate">
-                                            {{ $product->detail }}
+                                            <strong class="py-2">{{ __('message.Body') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->detail }}
+                                                </span>
+                                            </strong>
+                                        </div>
+                                        <div class="col-12 text-truncate">
+                                            <strong class="py-2"> {{ __('message.Conference lecturer') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->owner }}
+                                                </span>
+                                            </strong>
+                                        </div>
+                                        <div class="col-12 text-truncate">
+                                            <strong class="py-2"> {{ __('message.All registered participants') }}:
+                                                <span class=" fw-lighter fst-italic">
+                                                    {{ $product->user_checked }}
+                                                </span>
+                                            </strong>
                                         </div>
 
-                                        <p class="text-muted fst-italic">
-                                            {{ __('message.All registered participants') }}:
-                                            {{ $product->user_checked }}
-                                        </p>
-                                        <small class="text-muted fst-italic">
-                                            {{ __('message.Conference lecturer') }}:
-                                            {{ $product->user->name }}</small>
                                         <form method="POST" action="{{ route('product-checkin', $product->id) }}"
                                             class=" justify-content-end d-flex">
                                             @method('POST')
@@ -74,7 +118,7 @@
                                     <hr class="py-4">
                                 @endif
                             @empty
-                                <p>{{ __('message.No Products') }}</p>
+                                <h3 class="text-center fst-italic">{{ __('message.No events found!') }}</h3>
                             @endforelse
                         </div>
                     </div>

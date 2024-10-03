@@ -110,4 +110,6 @@ return [
     "Check In Only Register User" => "Check In Only Register User",
     "Manage" => "Manage",
     "Booking" => "Booking",
+    "guest" => "Guest",
+    "No events found!" => "No events found!",
 ];

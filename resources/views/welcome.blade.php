@@ -118,7 +118,7 @@
                         @forelse ($products as $product)
                             <div id={{ $product->id }}>
                                 @if ($product->booked_from_date === $product->booked_to_date)
-                                    <h3 class="text-center py-2"> {{ $product->name }}</h3>
+                                    <h3 class="text-center py-2"> {{ $product->title }}</h3>
                                     <h5 class=" fst-italic">
                                         {{ $product->booked_from_date }}
                                         {{ __('message.from') }}
@@ -157,7 +157,7 @@
                                     @endif
                                     <hr class="py-4">
                                 @else
-                                    <h3 class="text-center py-2"> {{ $product->name }}</h3>
+                                    <h3 class="text-center py-2"> {{ $product->title }}</h3>
                                     <h5 class=" fst-italic">
                                         {{ $product->booked_from_date }} {{ __('message.from') }}
                                         {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}

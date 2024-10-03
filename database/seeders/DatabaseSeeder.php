@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         foreach (range(1, 10) as $index) {
             DB::table('products')->insert([
                 'user_id' => $faker->numberBetween(1, 3),
-                'name' => $faker->name,
+                'title' => $faker->name,
                 'detail' => $faker->realText(1500),
                 'booked_from' => $faker->dateTimeBetween('now', '+1 week'),
                 'booked_to' => $faker->dateTimeBetween('+1 week', '+2 week'),

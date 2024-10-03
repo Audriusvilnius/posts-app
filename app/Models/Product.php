@@ -16,7 +16,7 @@ class Product extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
+        'title',
         'detail',
         'booked_from',
         'booked_to'

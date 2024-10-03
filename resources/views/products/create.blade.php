@@ -50,8 +50,8 @@
                             <div class="col-xs-12 col-sm-12 col-md-8">
                                 <div class="form-group">
                                     <strong>{{ __('message.Title') }}:</strong>
-                                    <input type="text" name="name" class="form-control" placeholder="Title"
-                                        value={{ old('name') }}>
+                                    <input type="text" name="title" class="form-control" placeholder="Title"
+                                        value={{ old('title') }}>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

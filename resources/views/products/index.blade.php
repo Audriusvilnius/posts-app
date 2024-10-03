@@ -55,7 +55,7 @@
                                         </td>
                                         <td>
                                             <p>
-                                                {!! nl2br($product->name) !!}
+                                                {!! nl2br($product->title) !!}
                                             </p>
                                             <small>
                                                 {!! nl2br($product->detail) !!}

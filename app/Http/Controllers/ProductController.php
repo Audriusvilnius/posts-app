@@ -65,6 +65,9 @@ class ProductController extends Controller
 
     private function getProductsForUser()
     {
+        // $role = DB::table('model_has_roles')->where('model_id', Auth::user()->id)->get();
+        // $role_name = DB::table('roles')->where('id', $role[0]->role_id)->first()->name;
+
         return Auth::user()->hasRole('Admin')
             ? Product::latest()->paginate(5)
             : Product::where('user_id', Auth::id())->latest()->paginate(5);
@@ -89,7 +92,7 @@ class ProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         request()->validate([
-            'name' => 'required|string|max:255|min:3',
+            'title' => 'required|string|max:255|min:3',
             'detail' => 'required|string|max:3000|min:3',
             'booked_from' => 'required|date|after:today',
             'booked_to' => 'required|date|after:booked_from',
@@ -135,7 +138,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): RedirectResponse
     {
         request()->validate([
-            'name' => 'required|string|max:255|min:3',
+            'title' => 'required|string|max:255|min:3',
             'detail' => 'required|string|max:3000|min:3',
             'booked_from' => 'required|date|after:today',
             'booked_to' => 'required|date|after:booked_from',

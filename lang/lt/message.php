@@ -2,7 +2,7 @@
 return [
     "welcome" => "labas",
     "You are logged in!" => "Jūs esate prisijungęs!",
-    "Dashboard" => "Prietaisų skydelis",
+    "Dashboard" => "Darbalaukis",
     "Confirm Password" => "Patvirtinkite slaptažodį",
     "Please confirm your password before continuing." => "Prašome patvirtinti savo slaptažodį prieš tęsiant.",
     "Password" => "Slaptažodis",
@@ -110,4 +110,6 @@ return [
     "Check In Only Register User" => "Registracija tik registruotiems naudotojams",
     "Manage" => "Tvarkyti",
     "Booking" => "Rezervacija",
+    "guest" => "Svečias",
+    "No events found!" => "Renginių nerasta!",
 ];

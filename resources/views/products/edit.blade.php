@@ -46,8 +46,8 @@
                                 <div class="col-xs-12 col-sm-12 col-md-8">
                                     <div class="form-group">
                                         <strong>{{ __('message.Title') }}:</strong>
-                                        <input type="text" name="name" value="{{ $product->name }}"
-                                            class="form-control" placeholder="Name">
+                                        <input type="text" name="title" value="{{ $product->title }}"
+                                            class="form-control" placeholder="Title">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

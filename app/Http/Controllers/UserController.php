@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -142,8 +143,7 @@ class UserController extends Controller
             return redirect()->route('users.index')
                 ->with('error', 'You can not delete user with registration');
         }
-
-        if ($id == auth()->user()->id) {
+        if ($id == Auth::user()->id) {
             return redirect()->route('users.index')
                 ->with('error', 'You can not delete yourself');
         }
