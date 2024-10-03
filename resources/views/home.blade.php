@@ -103,7 +103,6 @@
                                                 </span>
                                             </strong>
                                         </div>
-
                                         <form method="POST" action="{{ route('product-checkin', $product->id) }}"
                                             class=" justify-content-end d-flex">
                                             @method('POST')

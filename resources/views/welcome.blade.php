@@ -155,7 +155,10 @@
                                         <a href="#"
                                             class="text-center">{{ __('message.Check In Only Register User') }}</a>
                                     @endif
-                                    <hr class="py-4">
+                                    @if (!$loop->last)
+                                        {{-- This is the last iteration --}}
+                                        <hr class="py-4">
+                                    @endif
                                 @else
                                     <h3 class="text-center py-2"> {{ $product->title }}</h3>
                                     <h5 class=" fst-italic">
@@ -194,7 +197,10 @@
                                         <a href="#"
                                             class="text-center">{{ __('message.Check In Only Register User') }}</a>
                                     @endif
-                                    <hr class="py-4">
+                                    @if (!$loop->last)
+                                        {{-- This is the last iteration --}}
+                                        <hr class="py-4">
+                                    @endif
                                 @endif
                             </div>
                         @empty
