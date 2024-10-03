@@ -65,10 +65,10 @@ class ProductController extends Controller
 
     private function getProductsForUser()
     {
-        // $role = DB::table('model_has_roles')->where('model_id', Auth::user()->id)->get();
-        // $role_name = DB::table('roles')->where('id', $role[0]->role_id)->first()->name;
+        $role = DB::table('model_has_roles')->where('model_id', Auth::user()->id)->get();
+        $role_name = DB::table('roles')->where('id', $role[0]->role_id)->first()->name;
 
-        return Auth::user()->hasRole('Admin')
+        return $role_name === 'Admin'
             ? Product::latest()->paginate(5)
             : Product::where('user_id', Auth::id())->latest()->paginate(5);
     }
