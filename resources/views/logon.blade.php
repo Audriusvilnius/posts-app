@@ -1,8 +1,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <h3 class="text-primary text-center">LOGIN</h3>
-            <div class="modal-body pt-5 pb-0">
+            <div class="modal-body  pb-0 pt-5">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="row mb-3">
@@ -64,12 +63,14 @@
                                 </a>
                             @endif
                         </div>
-                        <div class="col-md-8 offset-md-3 justify-content-end d-flex">
-                            <button type="submit" class="btn btn-primary text-white">
+                        <div class="col-md-12 justify-content-end d-flex ">
+                            <button type="submit" class="btn btn-primary text-white px-4">
                                 {{ __('message.Login') }}
                             </button>
-                            <button type="button" class="btn btn-secondary text-white px-3 ms-3"
-                                data-bs-dismiss="modal">{{ __('message.Close') }}</button>
+                            <a class="btn btn-secondary text-white px-4 ms-3 align-items-center align-content-center"
+                                href="{{ route('register') }}">{{ __('message.Register') }}</a>
+                            {{-- <button type="button" class="btn btn-secondary text-white px-3 ms-3"
+                                data-bs-dismiss="modal">{{ __('message.Close') }}</button> --}}
                         </div>
                     </div>
                 </form>

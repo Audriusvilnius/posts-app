@@ -71,12 +71,12 @@
                         data-bs-target="#exampleModal">
                         {{ __('message.Login') }}
                     </button>
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="btn btn-outline-light py-2 ms-2 px-4 text-uppercase text-decoration-none border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                             {{ __('message.Register') }}
                         </a>
-                    @endif
+                    @endif --}}
                 @endauth
             </nav>
         @endif
@@ -181,23 +181,32 @@
                                     <h5 class="text-muted fst-italic justify-content-end d-flex">
                                         {{ __('message.Conference lecturer') }}:
                                         {{ $product->user->name }}</h5>
-                                    @if (auth()->user())
-                                        <form method="POST" action="{{ route('product-checkin', $product->id) }}"
-                                            class=" justify-content-center d-flex">
-                                            @method('POST')
-                                            @csrf
-                                            @if ($product->checked == 1)
-                                                <button class="button special"
-                                                    type="submit">{{ __('message.Leave') }}</button>
-                                            @else
-                                                <button class="button alt"
-                                                    type="submit">{{ __('message.Check in') }}</button>
-                                            @endif
-                                        </form>
-                                    @else
-                                        <a href="#"
-                                            class="text-center">{{ __('message.Check In Only Register User') }}</a>
-                                    @endif
+                                    <div class=" justify-content-center d-flex">
+                                        @if (auth()->user())
+                                            <form method="POST" action="{{ route('product-checkin', $product->id) }}"
+                                                class=" justify-content-center d-flex">
+                                                @method('POST')
+                                                @csrf
+                                                @if ($product->checked == 1)
+                                                    <button class="button special"
+                                                        type="submit">{{ __('message.Leave') }}</button>
+                                                @else
+                                                    <button class="button alt"
+                                                        type="submit">{{ __('message.Check in') }}</button>
+                                                @endif
+                                            </form>
+                                        @else
+                                            {{-- <a href="#"
+                                            class="text-center">{{ __('message.Check In Only Register User') }}</a> --}}
+                                            <div class="">
+                                                <span class="btn px-4 text-uppercase text-center login"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    {{ __('message.Check In Only Register User') }}
+                                                </span>
+                                            </div>
+                                        @endif
+                                    </div>
+
                                     @if (!$loop->last)
                                         {{-- This is the last iteration --}}
                                         <hr class="py-4">

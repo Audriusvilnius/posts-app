@@ -79,3 +79,27 @@ input {
     padding: 14px;
     cursor: pointer;
 }
+span {
+    &.login{
+        color: #4a4a4a80;
+        font-size: 0.7rem;
+        font-weight: 500;
+        transition: all 0.7s;
+
+    }
+    &.login:hover {
+        color: #fff;
+        font-size: .75rem;
+        font-weight: 500;
+        transition: all 0.7s;
+        background-color: #4a4a4a80;
+    }
+    &.login:active {
+        color: #fff;
+        font-size: .8rem;
+        font-weight: 500;
+        transition: all 0.5s;
+        transform: translateY(-2px);
+    }
+
+}

@@ -19401,3 +19401,24 @@ input.form-check-input:hover {
   padding: 14px;
   cursor: pointer;
 }
+
+span.login {
+  color: rgba(74, 74, 74, 0.5019607843);
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition: all 0.7s;
+}
+span.login:hover {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.7s;
+  background-color: rgba(74, 74, 74, 0.5019607843);
+}
+span.login:active {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.5s;
+  transform: translateY(-2px);
+}
