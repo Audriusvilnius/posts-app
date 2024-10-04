@@ -82,6 +82,7 @@
         @endif
     </header>
     @include('logon')
+    {{-- @include('newlogon') --}}
     <!-- Banner --><!--
    To use a video as your background, set data-video to the name of your video without
    its extension (eg. images/banner). Your video must be available in both .mp4 and .webm

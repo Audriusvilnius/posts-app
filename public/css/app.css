@@ -2194,17 +2194,26 @@ button.special:active,
     background-color: #439aea;
 }
 
+input[type="submit"].confirm,
+input[type="reset"].confirm,
+input[type="button"].confirm,
 button.confirm,
 .button.confirm {
     background-color: #17e4a6;
     color: #ffffff !important;
 }
 
+input[type="submit"].confirm:hover,
+input[type="reset"].confirm:hover,
+input[type="button"].confirm:hover,
 button.confirm:hover,
 .button.confirm:hover {
     background-color: #17e4a6;
 }
 
+input[type="submit"].confirm:active,
+input[type="reset"].confirm :active,
+input[type="button"].confirm:active,
 button.confirm:active,
 .button.confirm:active {
     background-color: #17e4a6;
@@ -4351,6 +4360,7 @@ body.is-loading #banner:before {
 
 }
 @charset "UTF-8";
+/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
@@ -19342,4 +19352,52 @@ nav a:hover {
   background-color: #ddd;
   color: black;
   border-radius: 5px;
+}
+
+input.form-control {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgb(127, 118, 118);
+  transition: background-color 1s;
+  color: #4a4a4a;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+}
+input.form-control:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+textarea.form-control {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgb(127, 118, 118);
+  transition: background-color 1s;
+  color: #4a4a4a;
+  width: 100%;
+  height: 44px;
+}
+textarea.form-control:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+input.form-check-input {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgb(127, 118, 118);
+  transition: background-color 1s;
+  color: #4a4a4a;
+}
+input.form-check-input:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.view-password {
+  right: 0;
+  bottom: 0;
+  border: 1px solid transparent;
+  background: none;
+  z-index: 3;
+  padding: 14px;
+  cursor: pointer;
 }
