@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -22,6 +23,7 @@ class ProductController extends Controller
         $this->middleware('permission:product-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:product-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:product-list', ['only' => ['index']]);
     }
     /**
      * Display a listing of the resource start page.
@@ -37,6 +39,8 @@ class ProductController extends Controller
                     $product->booked_to_date = date('Y-m-d', strtotime($product->booked_to));
                     $product->booked_from_hours = date('H:i', strtotime($product->booked_from));
                     $product->booked_to_hours = date('H:i', strtotime($product->booked_to));
+                    $product->user_checked = DB::table('registration')->where('event_id', $product->id)->count();
+                    $product->checked = DB::table('registration')->where('user_id', Auth::id())->where('event_id', $product->id)->count() ?? null;
                     $product->deference = round(Carbon::parse($product->booked_from)->diffInMinutes(Carbon::parse($product->booked_to)), 2);
 
                     return $product;
@@ -61,7 +65,10 @@ class ProductController extends Controller
 
     private function getProductsForUser()
     {
-        return Auth::user()->hasRole('Admin')
+        $role = DB::table('model_has_roles')->where('model_id', Auth::user()->id)->get();
+        $role_name = DB::table('roles')->where('id', $role[0]->role_id)->first()->name;
+
+        return $role_name === 'Admin'
             ? Product::latest()->paginate(5)
             : Product::where('user_id', Auth::id())->latest()->paginate(5);
     }
@@ -85,7 +92,7 @@ class ProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         request()->validate([
-            'name' => 'required|string|max:255|min:3',
+            'title' => 'required|string|max:255|min:3',
             'detail' => 'required|string|max:3000|min:3',
             'booked_from' => 'required|date|after:today',
             'booked_to' => 'required|date|after:booked_from',
@@ -131,7 +138,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): RedirectResponse
     {
         request()->validate([
-            'name' => 'required|string|max:255|min:3',
+            'title' => 'required|string|max:255|min:3',
             'detail' => 'required|string|max:3000|min:3',
             'booked_from' => 'required|date|after:today',
             'booked_to' => 'required|date|after:booked_from',
@@ -155,6 +162,25 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')
             ->with('success', 'Product deleted successfully');
+    }
+    public function checkin($id): RedirectResponse
+    {
+        $product = Product::find($id);
+        $event = DB::table('registration')->where('user_id', Auth::id())->where('event_id', $id)->first();
+        if (!$event) {
+            DB::table('registration')->insert([
+                'user_id' => Auth::id(),
+                'event_id' => $id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            $message = 'You checked in successfully';
+            return redirect()->route('product-welcome', ['#' . ($product->id)])->with('ok', $message);
+        } else {
+            DB::table('registration')->where('user_id', Auth::id())->where('event_id', $id)->delete();
+            $message = 'You unchecked successfully';
+            return redirect()->route('product-welcome', ['#' . ($product->id)])->with('error', $message);
+        }
     }
 
 }

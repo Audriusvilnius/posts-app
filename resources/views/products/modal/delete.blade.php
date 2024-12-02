@@ -12,7 +12,7 @@
                 <b>
                     <i>
                         <code>
-                            {{ $product->name }}
+                            {{ $product->title }}
                         </code>
                         {{ __('?') }}
                     </i>

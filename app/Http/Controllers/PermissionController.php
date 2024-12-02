@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
@@ -14,6 +15,12 @@ class PermissionController extends Controller
      */
     function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            if (!Auth::check()) {
+                return redirect('welcome');
+            }
+            return $next($request);
+        });
         $this->middleware('permission:permission-list|permission-create|permission-edit|permission-delete', ['only' => ['index', 'store']]);
         $this->middleware('permission:permission-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:permission-edit', ['only' => ['edit', 'update']]);

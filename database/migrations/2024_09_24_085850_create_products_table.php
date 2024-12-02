@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id')->nullable();
             $table->dateTime('booked_from')->nullable();
             $table->dateTime('booked_to')->nullable();
-            $table->string('name');
+            $table->string('title')->nullable();
             $table->text('detail');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -69,9 +69,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $permissions = Permission::where('name', 'LIKE', 'product-%')->pluck('id', 'id')->all();
+        $permissions = Permission::where('name', 'LIKE', 'product-event')->pluck('id', 'id')->all();
         $newUser->syncPermissions($permissions);
-        $newUser->assignRole([2]);
+        $newUser->assignRole([3]);
         return $newUser;
     }
 }

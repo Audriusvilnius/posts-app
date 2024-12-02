@@ -16,11 +16,12 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
 </head>
 
 <body>
@@ -59,10 +60,22 @@
                             @endif
                         @else
                             @can('product-list')
-                                <li><a class="nav-link"
-                                        href="{{ route('products.index') }}">{{ __('message.Manage Reservations') }}</a></li>
-                            @endcan
-                            @can('admin-tools')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle me-1" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('message.Manage') }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @can('product-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('products.index') }}">{{ __('message.Reservations') }}</a>
+                                        @endcan
+                                        @can('product-list')
+                                            <a class="nav-link ms-1 me-1"
+                                                href="{{ route('home') }}">{{ __('message.Booking') }}</a>
+                                        @endcan
+                                    @endcan
+                                    @can('admin-tools')
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle me-1" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -112,6 +125,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>

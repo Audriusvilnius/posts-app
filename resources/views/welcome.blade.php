@@ -8,10 +8,24 @@
     <title>PIT-21-I-NT SD1/2</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> --}}
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/main.css', 'resources/css/font-awesome.min.css'])
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/main.css', 'resources/css/font-awesome.min.css']) --}}
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+
+
+    {{-- <link rel="stylesheet" href="{{ mix('css/main.css') }}" /> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -53,35 +67,38 @@
                         {{ __('message.Dashboard') }}
                     </a>
                 @else
-                    <button type="button" class="btn btn-warning px-4 " data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning px-4 text-uppercase" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         {{ __('message.Login') }}
                     </button>
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="btn btn-outline-light py-2 ms-2 px-4 text-uppercase text-decoration-none border-2 rounded ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                             {{ __('message.Register') }}
                         </a>
-                    @endif
+                    @endif --}}
                 @endauth
             </nav>
         @endif
     </header>
     @include('logon')
+    {{-- @include('newlogon') --}}
     <!-- Banner --><!--
    To use a video as your background, set data-video to the name of your video without
    its extension (eg. images/banner). Your video must be available in both .mp4 and .webm
    formats to work correctly.
   -->
     <section id="banner" data-video="images/banner" style="background-image: url({{ asset('images/banner.jpg') }})">
-        < <div class="inner">
+        <div class="inner">
             <h1>{{ __('message.Transitive') }}</h1>
             <p>{{ __('message.A full responsive, business-oriented HTML5/CSS3 template') }}<br>
-                {{ __('message.built by') }} <a href="https://templated.co/">{{ __('Templated') }}</a>
-                {{ __('message.and released under the') }} <a
-                    href="https://templated.co/license">{{ __('message.Creative Commons') }}</a>.</p>
+                {{ __('message.built by') }}
+                <a href="https://templated.co/">{{ __('Templated') }}</a>
+                {{ __('message.and released under the') }}
+                <a href="https://templated.co/license">{{ __('message.Creative Commons') }}.</a>
+            </p>
             <a href="#one" class="button special scrolly">{{ __('message.Get Started') }}</a>
-            </div>
+        </div>
     </section><!-- One -->
     <section id="one" class="wrapper style2">
         <div class="inner">
@@ -92,46 +109,110 @@
                     </div>
                     <div class="content">
                         <header class="align-center py-5">
-                            <h2>{{ __('message.List of conferences') }}</h2>
-                            <p>{{ __('message.The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
+                            <h2 class="py-3">{{ __('message.List of conferences') }}</h2>
+                            <p class="py-3">
+                                {{ __('message.The agency will host a series of conferences focused on discussing innovations in information technology and systems, bringing together specialists from various fields to collaborate, share experiences, and exchange best practices.') }}
                             </p>
+                            <hr class="py-4">
                         </header>
+
                         @forelse ($products as $product)
-                            @if ($product->booked_from_date === $product->booked_to_date)
-                                <h5 class=" fst-italic">
-                                    {{ $product->booked_from_date }}
-                                    {{ __('message.from') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                    {{ __('message.to') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                                </h5>
-                                <h6 class=" fst-italic text-muted">
-                                    {{ __('message.The duration of the event approximately') }}
-                                    {{ $product->deference }} min.
-                                </h6>
-                                <h3> {{ $product->name }}</h3>
-                                <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">{{ __('message.Conference lecturer') }}:
-                                    {{ $product->user->name }}</h5>
-                                <hr>
-                            @else
-                                <h5 class=" fst-italic">
-                                    {{ $product->booked_from_date }} {{ __('message.from') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
-                                    {{ __('message.until') }}
-                                    {{ $product->booked_to_date }} {{ __('message.to') }}
-                                    {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
-                                </h5>
-                                <h6 class=" fst-italic text-muted">
-                                    {{ __('message.The duration of the event approximately') }}
-                                    {{ $product->deference }} min.
-                                </h6>
-                                <h3> {{ $product->name }}</h3>
-                                <p> {!! nl2br($product->detail) !!}</p>
-                                <h5 class="text-muted fst-italic">{{ __('message.Conference lecturer') }}:
-                                    {{ $product->user->name }}</h5>
-                                <hr>
-                            @endif
+                            <div id={{ $product->id }}>
+                                @if ($product->booked_from_date === $product->booked_to_date)
+                                    <h3 class="text-center py-2"> {{ $product->title }}</h3>
+                                    <h5 class=" fst-italic">
+                                        {{ $product->booked_from_date }}
+                                        {{ __('message.from') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                        {{ __('message.to') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                    </h5>
+                                    <h6 class=" fst-italic text-muted">
+                                        {{ __('message.The duration of the event approximately') }}
+                                        {{ $product->deference }} min.
+                                    </h6>
+                                    <p> {!! nl2br($product->detail) !!}</p>
+                                    <p class="text-muted fst-italic">
+                                        {{ __('message.All registered participants') }}:
+                                        {{ $product->user_checked }}
+                                    </p>
+                                    <h5 class="text-muted fst-italic justify-content-end d-flex">
+                                        {{ __('message.Conference lecturer') }}:
+                                        {{ $product->user->name }}</h5>
+                                    @if (auth()->user())
+                                        <form method="POST" action="{{ route('product-checkin', $product->id) }}"
+                                            class=" justify-content-center d-flex">
+                                            @method('POST')
+                                            @csrf
+                                            @if ($product->checked == 1)
+                                                <button class="button special"
+                                                    type="submit">{{ __('message.Leave') }}</button>
+                                            @else
+                                                <button class="button alt"
+                                                    type="submit">{{ __('message.Check in') }}</button>
+                                            @endif
+                                        </form>
+                                    @else
+                                        <a href="#"
+                                            class="text-center">{{ __('message.Check In Only Register User') }}</a>
+                                    @endif
+                                    @if (!$loop->last)
+                                        {{-- This is the last iteration --}}
+                                        <hr class="py-4">
+                                    @endif
+                                @else
+                                    <h3 class="text-center py-2"> {{ $product->title }}</h3>
+                                    <h5 class=" fst-italic">
+                                        {{ $product->booked_from_date }} {{ __('message.from') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_from_hours)->format('H:i') }}
+                                        {{ __('message.until') }}
+                                        {{ $product->booked_to_date }} {{ __('message.to') }}
+                                        {{ \Carbon\Carbon::parse($product->booked_to_hours)->format('H:i') }}
+                                    </h5>
+                                    <h6 class=" fst-italic text-muted">
+                                        {{ __('message.The duration of the event approximately') }}
+                                        {{ $product->deference }} min.
+                                    </h6>
+                                    <p> {!! nl2br($product->detail) !!}</p>
+                                    <p class="text-muted fst-italic">
+                                        {{ __('message.All registered participants') }}:
+                                        {{ $product->user_checked }}
+                                    </p>
+                                    <h5 class="text-muted fst-italic justify-content-end d-flex">
+                                        {{ __('message.Conference lecturer') }}:
+                                        {{ $product->user->name }}</h5>
+                                    <div class=" justify-content-center d-flex">
+                                        @if (auth()->user())
+                                            <form method="POST" action="{{ route('product-checkin', $product->id) }}"
+                                                class=" justify-content-center d-flex">
+                                                @method('POST')
+                                                @csrf
+                                                @if ($product->checked == 1)
+                                                    <button class="button special"
+                                                        type="submit">{{ __('message.Leave') }}</button>
+                                                @else
+                                                    <button class="button alt"
+                                                        type="submit">{{ __('message.Check in') }}</button>
+                                                @endif
+                                            </form>
+                                        @else
+                                            {{-- <a href="#"
+                                            class="text-center">{{ __('message.Check In Only Register User') }}</a> --}}
+                                            <div class="">
+                                                <span class="btn px-4 text-uppercase text-center login"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    {{ __('message.Check In Only Register User') }}
+                                                </span>
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    @if (!$loop->last)
+                                        {{-- This is the last iteration --}}
+                                        <hr class="py-4">
+                                    @endif
+                                @endif
+                            </div>
                         @empty
                             <div class=" justify-content-center d-flex">
                                 <h3>{{ __('message.No conferences found!') }}</h3>
@@ -200,12 +281,11 @@
                         <p> {{ $faker_header }}</p>
                     </div>
                 </div>
-
-
                 <div>
                     <div class="box">
                         <div class="image fit">
-                            <img src="{{ asset('images/pic03.jpg') }}" alt="" width="3472" height="1236">
+                            <img src="{{ asset('images/pic03.jpg') }}" alt="" width="3472"
+                                height="1236">
                         </div>
                         <div class="content">
                             @php
@@ -295,7 +375,7 @@
             window.location.href = url + "?lang=" + $(this).val();
         });
     </script>
-
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>

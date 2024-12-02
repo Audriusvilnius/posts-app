@@ -1,0 +1,105 @@
+// Fonts
+// @import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import '../css/main.css';
+@import 'font-awesome';
+
+#navbar .nav-item:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 5px;
+}
+input {
+    &.form-control {
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(127, 118, 118);
+        transition: background-color 1s;
+        color: #4a4a4a;
+        width: 100%;
+        height: 44px;
+        line-height: 44px;
+
+    }
+
+    &.form-control:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+textarea{
+    &.form-control {
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(127, 118, 118);
+        transition: background-color 1s;
+        color: #4a4a4a;
+        width: 100%;
+        height: 44px;
+
+    }
+
+    &.form-control:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+input {
+    &.form-check-input {
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(127, 118, 118);
+        transition: background-color 1s;
+        color: #4a4a4a;
+
+
+    }
+    &.form-check-input:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+.view-password {
+    // position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    background: none;
+    z-index: 3;
+    padding: 14px;
+    cursor: pointer;
+}
+span {
+    &.login{
+        color: #4a4a4a80;
+        font-size: 0.7rem;
+        font-weight: 500;
+        transition: all 0.7s;
+
+    }
+    &.login:hover {
+        color: #fff;
+        font-size: .75rem;
+        font-weight: 500;
+        transition: all 0.7s;
+        background-color: #4a4a4a80;
+    }
+    &.login:active {
+        color: #fff;
+        font-size: .8rem;
+        font-weight: 500;
+        transition: all 0.5s;
+        transform: translateY(-2px);
+    }
+
+}
